@@ -37,86 +37,6 @@ const pawnWhite = "♟"
 
 const kingWhite = "♚"
 
-//column a
-let a1 = rookBlack;
-let a2 = "";
-let a3 = "";
-let a4 = "";
-let a5 = "";
-let a6 = "";
-let a7 = "";
-let a8 = "";
-
-//column b
-let b1 = "";
-let b2 = "";
-let b3 = "";
-let b4 = "";
-let b5 = "";
-let b6 = "";
-let b7 = "";
-let b8 = "";
-
-//comumn c
-let c1 = "";
-let c2 = "";
-let c3 = "";
-let c4 = "";
-let c5 = "";
-let c6 = "";
-let c7 = "";
-let c8 = "";
-
-//column d
-let d1 = "";
-let d2 = "";
-let d3 = "";
-let d4 = "";
-let d5 = "";
-let d6 = "";
-let d7 = "";
-let d8 = "";
-
-//comumn e
-let e1 = "";
-let e2 = "";
-let e3 = "";
-let e4 = "";
-let e5 = "";
-let e6 = "";
-let e7 = "";
-let e8 = "";
-
-//column f
-let f1 = "";
-let f2 = "";
-let f3 = "";
-let f4 = "";
-let f5 = "";
-let f6 = "";
-let f7 = "";
-let f8 = "";
-
-//column g
-let g1 = "";
-let g2 = "";
-let g3 = "";
-let g4 = "";
-let g5 = "";
-let g6 = "";
-let g7 = "";
-let g8 = "";
-
-//column h
-let h1 = "";
-let h2 = "";
-let h3 = "";
-let h4 = "";
-let h5 = "";
-let h6 = "";
-let h7 = "";
-let h8 = "";
-
 
 let moveFromL;
 let moveFromN;
@@ -130,18 +50,15 @@ function input(input) {
   movetoL = prompt("What letter are you moving it to?")
   movetoN = prompt("What number are you moving it to?")
   translateMove(moveFromL, moveFromN)
+  pawnMove()
 }
 
 function display() {
-  console.log("|" + a1 + "|" + b1 + "|" + c1 + "|" + d1 + "|" + e1 + "|" + f1 + "|" + g1 + "|" + h1 + "|")
-  console.log("|" + a2 + "|" + b2 + "|" + c2 + "|" + d2 + "|" + e2 + "|" + f2 + "|" + g2 + "|" + h2 + "|") 
-  console.log("|" + a3 + "|" + b3 + "|" + c3 + "|" + d3 + "|" + e3 + "|" + f3 + "|" + g3 + "|" + h3 + "|")
-  console.log("|" + a4 + "|" + b4 + "|" + c4 + "|" + d4 + "|" + e4 + "|" + f4 + "|" + g4 + "|" + h4 + "|")
-  console.log("|" + a5 + "|" + b5 + "|" + c5 + "|" + d5 + "|" + e5 + "|" + f5 + "|" + g5 + "|" + h5 + "|")
-  console.log("|" + a6 + "|" + b6 + "|" + c6 + "|" + d6 + "|" + e6 + "|" + f6 + "|" + g6 + "|" + h6 + "|")
-  console.log("|" + a7 + "|" + b7 + "|" + c7 + "|" + d7 + "|" + e7 + "|" + f7 + "|" + g7 + "|" + h7 + "|")
-  console.log("|" + a8 + "|" + b8 + "|" + c8 + "|" + d8 + "|" + e8 + "|" + f8 + "|" + g8 + "|" + h8 + "|")
-}
+  displayBoard.forEach((index, i) => {
+    if (i != 0) {
+    console.log(" " + index[1][0] + " " + index[2][0]+ " " + index[3][0] + " " + index[4][0]+ " " + index[5][0] + " " + index[6][0]+ " " + index[7][0] + " " + index[8][0] + " ")
+ }})
+ }
 
 let boardArrayRep = [[],
 [0, 1, 2, 3, 4, 5, 6, 7, 8],
@@ -153,8 +70,20 @@ let boardArrayRep = [[],
 [0, 17, 27, 37, 47, 57, 67, 77, 87],
 [0, 18, 28, 38, 48, 58, 68, 78, 88],
 ]
+let displayBoard = [
+  [],
+  [0, [rookBlack, squareWhite], [knightBlack, squareBlack], [bishopBlack, squareWhite], [queenBlack, squareBlack], [kingBlack, squareWhite], [bishopBlack, squareBlack], [knightBlack, squareWhite], [rookBlack, squareBlack]],
+  [0, [pawnBlack, squareBlack], [pawnBlack, squareWhite], [pawnBlack, squareBlack], [pawnBlack, squareWhite], [pawnBlack, squareBlack], [pawnBlack, squareWhite], [pawnBlack, squareBlack], [pawnBlack, squareWhite]],
+  [0, [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack]],
+  [0, [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite]],
+  [0, [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack]],
+  [0, [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite], [squareBlack, squareBlack], [squareWhite, squareWhite]],
+  [0, [pawnWhite, squareWhite], [pawnWhite, squareBlack], [pawnWhite, squareWhite], [pawnWhite, squareBlack], [pawnWhite, squareWhite], [pawnWhite, squareBlack], [pawnWhite, squareWhite], [pawnWhite, squareBlack]],
+  [0, [rookWhite, squareBlack], [knightWhite, squareWhite], [bishopWhite, squareBlack], [queenWhite, squareWhite], [kingWhite, squareBlack], [bishopWhite, squareWhite], [knightWhite, squareBlack], [rookWhite, squareWhite]],
+]
 let Ogsquare
 let MoveToSquare
+let cluniesMum;
 function translateMove(moveFroml, moveFromn) {
   //letter Translate
   switch(moveFroml) {
@@ -276,17 +205,89 @@ function translateMove(moveFroml, moveFromn) {
     break;
   }
 }
+let possibleMove = true
+function executeMove() {
+  boardArrayRep.forEach((item, index ) => {
+    item.forEach((square, i) => {
+      if (square == MoveToSquare) {
+        switch (displayBoard[index][i][0]) {
+          case kingWhite:
+          console.log("You cant move it here dumbass")
+          possibleMove = false
+          break;
+          case queenWhite:
+          console.log("You cant move it here dumbass")
+          possibleMove = false
+          break;
+          case bishopWhite:
+          console.log("You cant move it here dumbass")
+          possibleMove = false
+          break;
+          case knightWhite:
+          console.log("You cant move it here dumbass")
+          possibleMove = false
+          break;
+          case rookWhite:
+          console.log("You cant move it here dumbass")
+          possibleMove = false
+          break;
+          case pawnWhite:
+          console.log("You cant move it here dumbass")
+          possibleMove = false
+          break;
+          default:
+            possibleMove = true
+            break;
+        }
+      }
+    })
+  })
+  if (possibleMove == true) {
+    boardArrayRep.forEach((item, index ) => {
+    item.forEach((square, i) => {
+      if (square == Ogsquare) {
+        cluniesMum = displayBoard[index][i][0]
+        displayBoard[index][i][0] = displayBoard[index][i][1]
+      }
+    })
+  })
+  boardArrayRep.forEach((item, index ) => {
+    item.forEach((square, i) => {
+      if (square == MoveToSquare) {
+        displayBoard[index][i][0] = cluniesMum
+      }
+    })
+  })
+} else {
+  input()
+}
+}
 function pawnMove() {
   if (whiteTurn == true) {
+    Ogsquare = boardArrayRep[moveFromN][moveFromL]
     MoveToSquare = boardArrayRep[movetoN][movetoL];
     moveFromN = (moveFromN - 1)
-    if (MoveToSquare = boardArrayRep[moveFromN][moveFromL]) {
-      console.log("Success")
+    if (MoveToSquare == boardArrayRep[moveFromN][moveFromL]) {
+      executeMove()
+      whiteTurn = false
     } else {
-      console.log("Failure")
+      // console.log("Failure")
+    }
+  } else if (whiteTurn == false) {
+    Ogsquare = boardArrayRep[moveFromN][moveFromL]
+    MoveToSquare = boardArrayRep[movetoN][movetoL];
+    moveFromN = (moveFromN + 1)
+    if (MoveToSquare == boardArrayRep[moveFromN][moveFromL]) {
+      console.log("Success")
+      executeMove()
+      whiteTurn = true
+    } else {
+      // console.log("Failure")
     }
   }
 }
-
-input()
-pawnMove()
+let alive = true
+while (alive = true){
+  display()
+  input()
+}
