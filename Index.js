@@ -1,6 +1,6 @@
 let prompt = require("prompt-sync")();
 console.log("");
-
+let whiteTurn = true
 //Github initalised 
 
 //ChessBoard
@@ -38,7 +38,7 @@ const pawnWhite = "♟"
 const kingWhite = "♚"
 
 //column a
-let a1 = blackRook;
+let a1 = rookBlack;
 let a2 = "";
 let a3 = "";
 let a4 = "";
@@ -122,13 +122,14 @@ let moveFromL;
 let moveFromN;
 let moveFromP;
 let movetoL;
-let letmoveN;
+let movetoN;
 function input(input) {
   moveFromL = prompt("What was the letter the piece is on")
   moveFromN = prompt("What was the number the piece is on")
   moveFromP = prompt("What is the piece")
   movetoL = prompt("What letter are you moving it to?")
   movetoN = prompt("What number are you moving it to?")
+  translateMove(moveFromL, moveFromN)
 }
 
 function display() {
@@ -142,18 +143,18 @@ function display() {
   console.log("|" + a8 + "|" + b8 + "|" + c8 + "|" + d8 + "|" + e8 + "|" + f8 + "|" + g8 + "|" + h8 + "|")
 }
 
-let boardArrayRep = [[]
+let boardArrayRep = [[],
 [0, 1, 2, 3, 4, 5, 6, 7, 8],
-[0, 1, 2, 3, 4, 5, 6, 7, 8],
-[0, 1, 2, 3, 4, 5, 6, 7, 8],
-[0, 1, 2, 3, 4, 5, 6, 7, 8],
-[0, 1, 2, 3, 4, 5, 6, 7, 8],
-[0, 1, 2, 3, 4, 5, 6, 7, 8],
-[0, 1, 2, 3, 4, 5, 6, 7, 8],
-[0, 1, 2, 3, 4, 5, 6, 7, 8],
+[0, 12, 22, 32, 42, 52, 62, 72, 82],
+[0, 13, 23, 33, 43, 53, 63, 73, 83],
+[0, 14, 24, 34, 44, 54, 64, 74, 84],
+[0, 15, 25, 35, 45, 55, 65, 75, 85],
+[0, 16, 26, 36, 46, 56, 66, 76, 86],
+[0, 17, 27, 37, 47, 57, 67, 77, 87],
+[0, 18, 28, 38, 48, 58, 68, 78, 88],
 ]
-
-
+let Ogsquare
+let MoveToSquare
 function translateMove(moveFroml, moveFromn) {
   //letter Translate
   switch(moveFroml) {
@@ -188,57 +189,57 @@ function translateMove(moveFroml, moveFromn) {
   //Number translate
   switch(moveFromn) {
     case "1":
-    moveFromN = 1
+    moveFromN = 8
     break;
     case "2":
-    moveFromN = 2
-    break;
-    case "3":
-    moveFromN = 3
-    break;
-    case "4":
-    moveFromN = 4
-    break;
-    case "5":
-    moveFromN = 5
-    break;
-    case "6":
-    moveFromN = 6
-    break;
-    case "7":
     moveFromN = 7
     break;
+    case "3":
+    moveFromN = 6
+    break;
+    case "4":
+    moveFromN = 5
+    break;
+    case "5":
+    moveFromN = 4
+    break;
+    case "6":
+    moveFromN = 3
+    break;
+    case "7":
+    moveFromN = 2
+    break;
     case "8":
-    moveFromN = 8
+    moveFromN = 1
     break;
     default:
     console.log("Josh")
     break;
   }
-  switch(moveToL) {
+  switch(movetoL) {
     case "a":
-    moveFromL = 1
+      movetoL = 1
     break;
     case "b":
-    moveFromL = 2
+      movetoL = 2
     break;
     case "c":
-    moveFromL = 3
+      movetoL = 3
     break;
     case "d":
-    moveFromL = 4
+      movetoL = 4
     break;
     case "e":
-    moveFromL = 5
+      movetoL = 5
     break;
     case "f":
-    moveFromL = 6
+      movetoL = 6
     break;
     case "g":
-    moveFromL = 7
+      movetoL = 7
     break;
     case "h":
-    moveFromL = 8
+      movetoL = 8
     break;
     default:
     console.log("Clunie")
@@ -247,28 +248,28 @@ function translateMove(moveFroml, moveFromn) {
   //Number translate
   switch(movetoN) {
     case "1":
-    moveFromN = 1
+      movetoN = 8
     break;
     case "2":
-    moveFromN = 2
+      movetoN = 7
     break;
     case "3":
-    moveFromN = 3
+      movetoN = 6
     break;
     case "4":
-    moveFromN = 4
+      movetoN = 5
     break;
     case "5":
-    moveFromN = 5
+      movetoN = 4
     break;
     case "6":
-    moveFromN = 6
+      movetoN = 3
     break;
     case "7":
-    moveFromN = 7
+      movetoN = 2
     break;
     case "8":
-    moveFromN = 8
+    moveFromN = 1
     break;
     default:
     console.log("Josh")
@@ -276,12 +277,16 @@ function translateMove(moveFroml, moveFromn) {
   }
 }
 function pawnMove() {
-  
+  if (whiteTurn == true) {
+    MoveToSquare = boardArrayRep[movetoN][movetoL];
+    moveFromN = (moveFromN - 1)
+    if (MoveToSquare = boardArrayRep[moveFromN][moveFromL]) {
+      console.log("Success")
+    } else {
+      console.log("Failure")
+    }
+  }
 }
 
 input()
-translateMove(moveFromL, moveFromN)
-console.log(moveFromL)
-console.log(moveFromN)
-console.log(movetoL)
-console.log(moveToN)
+pawnMove()
