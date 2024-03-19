@@ -49,7 +49,7 @@ function input(input) {
   movetoL = prompt("What letter are you moving it to?");
   movetoN = prompt("What number are you moving it to?");
   translateMove(moveFromL, moveFromN);
-  pawnMove();
+  diagMove();
 }
 function display() {
   displayBoard.forEach((index, i) => {
@@ -426,6 +426,38 @@ while ((alive = true)) {
   display();
   input();
 }
+
+function diagMove() {
+  let equalsquare = false
+  let edgeOfBoard = false
+  let n = moveFromN
+  let l = moveFromL
+  Ogsquare = boardArrayRep[moveFromN][moveFromL];
+  MoveToSquare = boardArrayRep[movetoN][movetoL];
+  boardArrayRep.forEach((item, i)=> {
+    item.forEach((square, index) => {
+      if (square = Ogsquare) {
+        while(equalsquare == false) {
+          while(edgeOfBoard == false) {
+            if(MoveToSquare == boardArrayRep[n][l]) {
+              equalsquare = true
+              edgeOfBoard = true
+              executeMove()
+              return;
+            } else if (n == 9 || n == 0 || l == 0 || l == 9) {
+              edgeOfBoard = true
+            } else {
+              n++
+              l++
+              console.log("added 1")
+            }
+          } console.log("Made it here")
+        } console.log("Also made it here")
+      }
+    })
+  })
+}
+
 autismLvl = 100000000000000
 function jacksAutism(raah) {
   if (autismLvl > 100000000) {
