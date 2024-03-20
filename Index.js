@@ -431,19 +431,22 @@ function pawnMove() {
   }
 }
 let alive = true;
+let n;
 while ((alive = true)) {
   display();
   input();
 }
 
 function diagMove() {
+  numb = moveFromN
+  lette = moveFromL
   let equalsquare = false
   let edgeOfBoard = false
   Ogsquare = boardArrayRep[numb][lette];
   MoveToSquare = boardArrayRep[movetoN][movetoL];
   boardArrayRep.forEach((item)=> {
-    item.forEach((squares) => {
-      if (squares = Ogsquare) {
+    item.forEach((square) => {
+      if (square = Ogsquare) {
           while(edgeOfBoard == false) {
             if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
              edgeOfBoard = true
@@ -451,12 +454,12 @@ function diagMove() {
              equalsquare = true
              edgeOfBoard = true
              console.log("Clunie is gay")
-             executeMove()
              if (whiteTurn == true) {
-               whiteTurn = false
-             } else {
-               whiteTurn = true
-             }
+              whiteTurn = false
+            } else {
+              whiteTurn = true
+            }
+             executeMove()
              return;
            } else {
               numb--
@@ -467,19 +470,19 @@ function diagMove() {
           numb = moveFromN
           lette = moveFromL
           edgeOfBoard = false
-          while(edgeOfBoard == false) {
+          while(edgeOfBoard == false) { // up and right
              if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
               edgeOfBoard = true
           } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
               equalsquare = true
               edgeOfBoard = true
-              console.log("Clunie is gay")
-              executeMove()
+              console.log("Clunie is stinky")
               if (whiteTurn == true) {
                 whiteTurn = false
               } else {
                 whiteTurn = true
               }
+               executeMove()
               return;
             } else {
               numb++
@@ -497,12 +500,12 @@ function diagMove() {
              equalsquare = true
              edgeOfBoard = true
              console.log("Clunie is gay")
-             executeMove()
              if (whiteTurn == true) {
-               whiteTurn = false
-             } else {
-               whiteTurn = true
-             }
+              whiteTurn = false
+            } else {
+              whiteTurn = true
+            }
+             executeMove()
              return;
            } else {
               numb--
@@ -520,12 +523,12 @@ function diagMove() {
              equalsquare = true
              edgeOfBoard = true
              console.log("Clunie is gay")
-             executeMove()
              if (whiteTurn == true) {
-               whiteTurn = false
-             } else {
-               whiteTurn = true
-             }
+              whiteTurn = false
+            } else {
+              whiteTurn = true
+            }
+             executeMove()
              return;
            } else {
               numb++
@@ -536,30 +539,11 @@ function diagMove() {
           numb = moveFromN
           lette = moveFromL
           edgeOfBoard = false
+          console.log(n)
+          n++
       }
     })
   })
-}
-
-let cockSize = 0.30000000
-i
-const josh = "ewis ookinim religious but love racism!!!" 
-const autismLvl = 100000000000000
-function jacksAutism(raah) {
-  if (autismLvl > 100000000) {
-    console.log("Jack has autism")
-    raah++
-  } else {
-    console.log(executeMove());
-    console.log(edgeOfBoard());
-    console.log(boardArrayRep());
-    console.log("imma shitt... auuuuuuuuuuuuuuuuuuuughhhhhhhhhhhhhhhhhhh!!!")
-  } if (cockSize < 5000) {
-    console.log("i have a small cock and want a helping hand to do a big shit");
-    console.log(lewis);
-  } else {
-    consolee.log(moveFromL++)
-  }
 }
 
 
