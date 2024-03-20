@@ -2,7 +2,10 @@ let prompt = require("prompt-sync")();
 console.log("");
 let whiteTurn = true;
 //Github initalised
+let jack = "¶"
 
+let lette;
+let numb;
 //ChessBoard
 
 const squareBlack = "□";
@@ -43,6 +46,9 @@ let moveFromP;
 let movetoL;
 let movetoN;
 function input(input) {
+  if ((Math.random()*100) == 1){
+    jacksAutism("N words in paris")
+  }
   moveFromL = prompt("What was the letter the piece is on");
   moveFromN = prompt("What was the number the piece is on");
   moveFromP = prompt("What is the piece");
@@ -51,6 +57,8 @@ function input(input) {
   translateMove(moveFromL, moveFromN);
   diagMove();
 }
+let num = moveFromN
+let lete = moveFromL
 function display() {
   displayBoard.forEach((index, i) => {
     if (i != 0) {
@@ -276,7 +284,7 @@ function translateMove(moveFroml, moveFromn) {
     default:
       console.log("Clunie");
       break;
-  }
+  } lette = moveFromL
   //Number translate
   switch (moveFromn) {
     case "1":
@@ -306,7 +314,7 @@ function translateMove(moveFroml, moveFromn) {
     default:
       console.log("Josh");
       break;
-  }
+  } numb = moveFromN
   switch (movetoL) {
     case "a":
       movetoL = 1;
@@ -417,7 +425,8 @@ function pawnMove() {
       executeMove();
       whiteTurn = true;
     } else {
-      // console.log("Failure")
+      console.log("You cannot move that here")
+      input()
     }
   }
 }
@@ -430,37 +439,216 @@ while ((alive = true)) {
 function diagMove() {
   let equalsquare = false
   let edgeOfBoard = false
-  let n = moveFromN
-  let l = moveFromL
-  Ogsquare = boardArrayRep[moveFromN][moveFromL];
+  Ogsquare = boardArrayRep[numb][lette];
   MoveToSquare = boardArrayRep[movetoN][movetoL];
-  boardArrayRep.forEach((item, i)=> {
-    item.forEach((square, index) => {
-      if (square = Ogsquare) {
-        while(equalsquare == false) {
+  boardArrayRep.forEach((item)=> {
+    item.forEach((squares) => {
+      if (squares = Ogsquare) {
           while(edgeOfBoard == false) {
-            if(MoveToSquare == boardArrayRep[n][l]) {
+            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+             edgeOfBoard = true
+         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
+             equalsquare = true
+             edgeOfBoard = true
+             console.log("Clunie is gay")
+             executeMove()
+             if (whiteTurn == true) {
+               whiteTurn = false
+             } else {
+               whiteTurn = true
+             }
+             return;
+           } else {
+              numb--
+              lette--
+              console.log(numb, lette)
+            }
+          }
+          numb = moveFromN
+          lette = moveFromL
+          edgeOfBoard = false
+          while(edgeOfBoard == false) {
+             if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+              edgeOfBoard = true
+          } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
               equalsquare = true
               edgeOfBoard = true
+              console.log("Clunie is gay")
               executeMove()
+              if (whiteTurn == true) {
+                whiteTurn = false
+              } else {
+                whiteTurn = true
+              }
               return;
-            } else if (n == 9 || n == 0 || l == 0 || l == 9) {
-              edgeOfBoard = true
             } else {
-              n++
-              l++
-              console.log("added 1")
+              numb++
+              lette--
+              console.log(numb, lette)
             }
-          } console.log("Made it here")
-        } console.log("Also made it here")
+          }
+          numb = moveFromN
+          lette = moveFromL
+          edgeOfBoard = false
+          while(edgeOfBoard == false) {
+            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+             edgeOfBoard = true
+         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
+             equalsquare = true
+             edgeOfBoard = true
+             console.log("Clunie is gay")
+             executeMove()
+             if (whiteTurn == true) {
+               whiteTurn = false
+             } else {
+               whiteTurn = true
+             }
+             return;
+           } else {
+              numb--
+              lette++
+              console.log(numb, lette)
+            }
+          }
+          numb = moveFromN
+          lette = moveFromL
+          edgeOfBoard = false
+          while(edgeOfBoard == false) {
+            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+             edgeOfBoard = true
+         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
+             equalsquare = true
+             edgeOfBoard = true
+             console.log("Clunie is gay")
+             executeMove()
+             if (whiteTurn == true) {
+               whiteTurn = false
+             } else {
+               whiteTurn = true
+             }
+             return;
+           } else {
+              numb++
+              lette++
+              console.log(numb, lette)
+            }
+          }
+          numb = moveFromN
+          lette = moveFromL
+          edgeOfBoard = false
       }
     })
   })
 }
 
-autismLvl = 100000000000000
+let cockSize = 0.30000000
+i
+const josh = "ewis ookinim religious but love racism!!!" 
+const autismLvl = 100000000000000
 function jacksAutism(raah) {
   if (autismLvl > 100000000) {
     console.log("Jack has autism")
+    raah++
+  } else {
+    console.log(executeMove());
+    console.log(edgeOfBoard());
+    console.log(boardArrayRep());
+    console.log("imma shitt... auuuuuuuuuuuuuuuuuuuughhhhhhhhhhhhhhhhhhh!!!")
+  } if (cockSize < 5000) {
+    console.log("i have a small cock and want a helping hand to do a big shit");
+    console.log(lewis);
+  } else {
+    consolee.log(moveFromL++)
   }
+}
+
+
+function straightMove() {
+  let equalsquare = false
+  let edgeOfBoard = false
+  Ogsquare = boardArrayRep[moveFromN][moveFromL];
+  MoveToSquare = boardArrayRep[movetoN][movetoL];
+  boardArrayRep.forEach((item)=> {
+    item.forEach((squares) => {
+      if (squares = Ogsquare) {
+        while(equalsquare == false) {
+          while(edgeOfBoard == false) {
+            if(MoveToSquare == boardArrayRep[moveFromN][moveFromL]) { 
+              equalsquare = true
+              edgeOfBoard = true
+              executeMove()
+              if (whiteTurn == true) {
+                whiteTurn = false
+              } else {
+                whiteTurn = true
+              }
+              return;
+            } else if (moveFromL == 9 || moveFromL == 0 || moveFromN == 0 || moveFromN == 9) {
+              edgeOfBoard = true
+              equalsquare = true
+            } else {
+              moveFromL++
+            }
+          }
+          edgeOfBoard = false
+          while(edgeOfBoard == false) {
+            if(MoveToSquare == boardArrayRep[moveFromN][moveFromL]) { 
+              equalsquare = true
+              edgeOfBoard = true
+              executeMove()
+              if (whiteTurn == true) {
+                whiteTurn = false
+              } else {
+                whiteTurn = true
+              }
+              return;
+            } else if (moveFromL == 9 || moveFromL == 0 || moveFromN == 0 || moveFromN == 9) {
+              edgeOfBoard = true
+              equalsquare = true
+            } else {
+              moveFromL--
+            }
+          }
+          edgeOfBoard = false
+          while(edgeOfBoard == false) {
+            if(MoveToSquare == boardArrayRep[moveFromN][moveFromL]) { 
+              equalsquare = true
+              edgeOfBoard = true
+              executeMove()
+              if (whiteTurn == true) {
+                whiteTurn = false
+              } else {
+                whiteTurn = true
+              }
+              return;
+            } else if (moveFromL == 9 || moveFromL == 0 || moveFromN == 0 || moveFromN == 9) {
+              edgeOfBoard = true
+              equalsquare = true
+            } else {
+              moveFromN--
+            }
+          }
+          edgeOfBoard = false
+          while(edgeOfBoard == false) {
+            if(MoveToSquare == boardArrayRep[moveFromN][moveFromL]) { 
+              equalsquare = true
+              edgeOfBoard = true
+              executeMove()
+              if (whiteTurn == true) {
+                whiteTurn = false
+              } else {
+                whiteTurn = true
+              }
+              return;
+            } else if (moveFromL == 9 || moveFromL == 0 || moveFromN == 0 || moveFromN == 9) {
+              edgeOfBoard = true
+              equalsquare = true
+            } else {
+              moveFromN++
+            }
+          }
+        }
+      }
+    })
+  })
 }
