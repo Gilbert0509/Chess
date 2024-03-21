@@ -43,7 +43,8 @@ const kingWhite = "♚";
 function whatMove(piece) {
   switch (piece) {
     case kingWhite:
-      // king move
+      kingMovementOne()
+      kingMovementTwo()
       break;
     case queenWhite:
       diagMove();
@@ -62,7 +63,8 @@ function whatMove(piece) {
       pawnMove();
       break;
     case kingBlack:
-      //king movement
+      kingMovementOne()
+      kingMovementTwo()
       break;
     case queenBlack:
       diagMove();
@@ -453,7 +455,6 @@ function executeMove() {
   boardArrayRep.forEach((item, index) => {
     item.forEach((square, i) => {
       if (square == MoveToSquare) {
-        marisaCurls(displayBoard[index][i][0]);
         possibleMove = true
       }
     });
@@ -625,9 +626,6 @@ function diagMove() {
         }
         numb = moveFromN;
         lette = moveFromL;
-        edgeOfBoard = false;
-        console.log(n);
-        n++;
       }
     }
   }
@@ -766,34 +764,226 @@ function straightMove() {
         }
         numb = moveFromN;
         lette = moveFromL;
-        edgeOfBoard = false;
       }
     }
   }
 }
 
-function kingMovement() {
+function kingMovementOne() {
   numb = moveFromN;
   lette = moveFromL;
   let equalsquare = false;
   let edgeOfBoard = false;
   Ogsquare = boardArrayRep[numb][lette];
   MoveToSquare = boardArrayRep[movetoN][movetoL];
-  if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-    edgeOfBoard = true;
-    return;
-  } else if (MoveToSquare == boardArrayRep[numb][lette]) {
-    equalsquare = true;
-    edgeOfBoard = true;
-    console.log("Clunie is not gay");
-    if (whiteTurn == true) {
-      whiteTurn = false;
-    } else {
-      whiteTurn = true;
+  for (let item = 1; item < 2; item++) {
+    for (let square = 1; square < 2; square++) {
+      if ((boardArrayRep[item][square] = Ogsquare)) {
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is jacked");
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            executeMove();
+            return;
+          } else {
+            numb--;
+            lette--;
+            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          // up and right
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is handsome");
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            executeMove();
+            return;
+          } else {
+            numb++;
+            lette--;
+            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is buetiful");
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            executeMove();
+            return;
+          } else {
+            numb--;
+            lette++;
+            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is amazing");
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            executeMove();
+            return;
+          } else {
+            numb++;
+            lette++;
+            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+      }
     }
-    executeMove();
-    return;
-  } 
+  }
+}
+function kingMovementTwo() {
+  numb = moveFromN;
+  lette = moveFromL;
+  let equalsquare = false;
+  let edgeOfBoard = false;
+  Ogsquare = boardArrayRep[numb][lette];
+  MoveToSquare = boardArrayRep[movetoN][movetoL];
+  for (let item = 1; item < 2; item++) {
+    for (let square = 1; square < 2; square++) {
+      if ((boardArrayRep[item][square] = Ogsquare)) {
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is great");
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            executeMove();
+            return;
+          } else {
+            lette--;
+            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          // up and right
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is sexy");
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            executeMove();
+            return;
+          } else {
+            lette++;
+            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is hot");
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            executeMove();
+            return;
+          } else {
+            numb--;
+            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is smart");
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            executeMove();
+            return;
+          } else {
+            numb++;
+            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+      }
+    }
+  }
 }
 
 function knightMovement() {
@@ -801,3 +991,30 @@ function knightMovement() {
   lette = moveFromL
   
 }
+
+
+// // king movement prototype
+// let yes = 1
+// while (yes == 1) {
+//   if (numb + 1 == 9 || lette + 1 == 9) {
+//     edgeOfBoard = true;
+//     return;
+//   } else if (MoveToSquare == boardArrayRep[numb + 1][lette + 1]) {
+//     equalsquare = true;
+//     edgeOfBoard = true;
+//     console.log("Clunie is not gay");
+//     if (whiteTurn == true) {
+//       whiteTurn = false;
+//     } else {
+//       whiteTurn = true;
+//     }
+//     executeMove();
+//     return;
+//   } else {
+//     yes++
+//   }
+// }
+// if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+//   edgeOfBoard = true;
+//   return;
+// }
