@@ -2,7 +2,7 @@ let prompt = require("prompt-sync")();
 console.log("");
 let whiteTurn = true;
 //Github initalised
-let jack = "¶"
+let jack = "¶";
 
 let lette;
 let numb;
@@ -46,11 +46,11 @@ function whatMove(piece) {
       // king move
       break;
     case queenWhite:
-      diagMove()
-      straightMove()
+      diagMove();
+      straightMove();
       break;
     case bishopWhite:
-      diagMove()
+      diagMove();
       break;
     case knightWhite:
       //knight move;
@@ -90,21 +90,23 @@ let moveFromP;
 let movetoL;
 let movetoN;
 function input(input) {
-  moveFromL = prompt("What was the letter the piece is on");
-  moveFromN = prompt("What was the number the piece is on");
-  moveFromP = prompt("What is the piece");
-  movetoL = prompt("What letter are you moving it to?");
-  movetoN = prompt("What number are you moving it to?");
+  moveFromL = prompt("What was the letter the piece is on:");
+  moveFromN = prompt("What was the number the piece is on:");
+  movetoL = prompt("What letter are you moving it to?:");
+  movetoN = prompt("What number are you moving it to?:");
   translateMove(moveFromL, moveFromN);
-  straightMove();
+  whatMove(displayBoard[moveFromN][moveFromL][0]);
 }
-let num = moveFromN
-let lete = moveFromL
+
+let num = moveFromN;
+let lete = moveFromL;
 function display() {
+  console.log("   " + "a" + "  " + "b" + "  " + "c" + "  " + "d" + "  " + "e" + "  " + "f" + "  " + "g" + "  " + "h");
   displayBoard.forEach((index, i) => {
+    let counter = 9 - i
     if (i != 0) {
       console.log(
-        "  " +
+       counter + "  " +
           index[1][0] +
           "  " +
           index[2][0] +
@@ -124,6 +126,34 @@ function display() {
       );
     }
   });
+  console.log("White turn = " + whiteTurn);
+}
+function Reversedisplay() {
+  console.log("   " + "h" + "  " + "g" + "  " + "f" + "  " + "e" + "  " + "d" + "  " + "c" + "  " + "b" + "  " + "a");
+  for (let i = 8; i > 0; i--) {
+    let reverseCounter = 9 - i
+    if (i != 0) {
+      console.log(
+      reverseCounter +  "  " +
+          displayBoard[i][8][0] +
+          "  " +
+          displayBoard[i][7][0] +
+          "  " +
+          displayBoard[i][6][0] +
+          "  " +
+          displayBoard[i][5][0] +
+          "  " +
+          displayBoard[i][4][0] +
+          "  " +
+          displayBoard[i][3][0] +
+          "  " +
+          displayBoard[i][2][0] +
+          "  " +
+          displayBoard[i][1][0] +
+          "  "
+      );
+    }
+  }
   console.log("White turn = " + whiteTurn);
 }
 let boardArrayRep = [
@@ -152,14 +182,14 @@ let displayBoard = [
   ],
   [
     0,
-    [pawnBlack, squareBlack],
-    [pawnBlack, squareWhite],
-    [pawnBlack, squareBlack],
-    [pawnBlack, squareWhite],
-    [pawnBlack, squareBlack],
-    [pawnBlack, squareWhite],
-    [pawnBlack, squareBlack],
-    [pawnBlack, squareWhite],
+    [pawnBlack, squareBlack, true],
+    [pawnBlack, squareWhite, true],
+    [pawnBlack, squareBlack, true],
+    [pawnBlack, squareWhite, true],
+    [pawnBlack, squareBlack, true],
+    [pawnBlack, squareWhite, true],
+    [pawnBlack, squareBlack, true],
+    [pawnBlack, squareWhite, true],
   ],
   [
     0,
@@ -207,14 +237,14 @@ let displayBoard = [
   ],
   [
     0,
-    [pawnWhite, squareWhite],
-    [pawnWhite, squareBlack],
-    [pawnWhite, squareWhite],
-    [pawnWhite, squareBlack],
-    [pawnWhite, squareWhite],
-    [pawnWhite, squareBlack],
-    [pawnWhite, squareWhite],
-    [pawnWhite, squareBlack],
+    [pawnWhite, squareWhite, true],
+    [pawnWhite, squareBlack, true],
+    [pawnWhite, squareWhite, true],
+    [pawnWhite, squareBlack, true],
+    [pawnWhite, squareWhite, true],
+    [pawnWhite, squareBlack, true],
+    [pawnWhite, squareWhite, true],
+    [pawnWhite, squareBlack, true],
   ],
   [
     0,
@@ -325,7 +355,8 @@ function translateMove(moveFroml, moveFromn) {
     default:
       console.log("Clunie");
       break;
-  } lette = moveFromL
+  }
+  lette = moveFromL;
   //Number translate
   switch (moveFromn) {
     case "1":
@@ -355,7 +386,8 @@ function translateMove(moveFroml, moveFromn) {
     default:
       console.log("Josh");
       break;
-  } numb = moveFromN
+  }
+  numb = moveFromN;
   switch (movetoL) {
     case "a":
       movetoL = 1;
@@ -422,6 +454,7 @@ function executeMove() {
     item.forEach((square, i) => {
       if (square == MoveToSquare) {
         marisaCurls(displayBoard[index][i][0]);
+        possibleMove = true
       }
     });
   });
@@ -466,8 +499,8 @@ function pawnMove() {
       executeMove();
       whiteTurn = true;
     } else {
-      console.log("You cannot move that here")
-      input()
+      console.log("You cannot move that here");
+      input();
     }
   }
 }
@@ -475,253 +508,296 @@ let alive = true;
 let n;
 
 function turn() {
-  display()
-  input()
+  if (whiteTurn == true) {
+  display();
+  } else {
+    Reversedisplay()
+  }
+  input();
 }
 while ((alive = true)) {
-  turn()
+  turn();
 }
 
 function diagMove() {
-  numb = moveFromN
-  lette = moveFromL
-  let equalsquare = false
-  let edgeOfBoard = false
+  numb = moveFromN;
+  lette = moveFromL;
+  let equalsquare = false;
+  let edgeOfBoard = false;
   Ogsquare = boardArrayRep[numb][lette];
   MoveToSquare = boardArrayRep[movetoN][movetoL];
-  for(let item = 1; item < boardArrayRep.length; i++) {
-    for(let square = 1; square < boardArrayRep[item].length; square++)  {
-      if (boardArrayRep[item][square] = Ogsquare) {
-          while(edgeOfBoard == false) {
-            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-             edgeOfBoard = true
-         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
-             equalsquare = true
-             edgeOfBoard = true
-             console.log("Clunie is gay")
-             if (whiteTurn == true) {
-              whiteTurn = false
+  for (let item = 1; item < boardArrayRep.length; item++) {
+    for (let square = 1; square < boardArrayRep[item].length; square++) {
+      if ((boardArrayRep[item][square] = Ogsquare)) {
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is jacked");
+            if (whiteTurn == true) {
+              whiteTurn = false;
             } else {
-              whiteTurn = true
+              whiteTurn = true;
             }
-             executeMove()
-             return;
-           } else {
-              numb--
-              lette--
-              console.log(numb, lette)
-            }
+            executeMove();
+            return;
+          } else {
+            numb--;
+            lette--;
+            console.log(numb, lette);
           }
-          numb = moveFromN
-          lette = moveFromL
-          edgeOfBoard = false
-          while(edgeOfBoard == false) { // up and right
-             if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-              edgeOfBoard = true
-          } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
-              equalsquare = true
-              edgeOfBoard = true
-              console.log("Clunie is stinky")
-              if (whiteTurn == true) {
-                whiteTurn = false
-              } else {
-                whiteTurn = true
-              }
-               executeMove()
-              return;
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          // up and right
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is handsome");
+            if (whiteTurn == true) {
+              whiteTurn = false;
             } else {
-              numb++
-              lette--
-              console.log(numb, lette)
+              whiteTurn = true;
             }
+            executeMove();
+            return;
+          } else {
+            numb++;
+            lette--;
+            console.log(numb, lette);
           }
-          numb = moveFromN
-          lette = moveFromL
-          edgeOfBoard = false
-          while(edgeOfBoard == false) {
-            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-             edgeOfBoard = true
-         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
-             equalsquare = true
-             edgeOfBoard = true
-             console.log("Clunie is gay")
-             if (whiteTurn == true) {
-              whiteTurn = false
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is buetiful");
+            if (whiteTurn == true) {
+              whiteTurn = false;
             } else {
-              whiteTurn = true
+              whiteTurn = true;
             }
-             executeMove()
-             return;
-           } else {
-              numb--
-              lette++
-              console.log(numb, lette)
-            }
+            executeMove();
+            return;
+          } else {
+            numb--;
+            lette++;
+            console.log(numb, lette);
           }
-          numb = moveFromN
-          lette = moveFromL
-          edgeOfBoard = false
-          while(edgeOfBoard == false) {
-            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-             edgeOfBoard = true
-         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
-             equalsquare = true
-             edgeOfBoard = true
-             console.log("Clunie is gay")
-             if (whiteTurn == true) {
-              whiteTurn = false
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is amazing");
+            if (whiteTurn == true) {
+              whiteTurn = false;
             } else {
-              whiteTurn = true
+              whiteTurn = true;
             }
-             executeMove()
-             return;
-           } else {
-              numb++
-              lette++
-              console.log(numb, lette)
-            }
+            executeMove();
+            return;
+          } else {
+            numb++;
+            lette++;
+            console.log(numb, lette);
           }
-          numb = moveFromN
-          lette = moveFromL
-          edgeOfBoard = false
-          console.log(n)
-          n++
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        console.log(n);
+        n++;
       }
     }
   }
 }
 
 function checkPie(spot) {
-    switch (spot) {
-      case kingWhite:
-        return false;
-      case queenWhite:
-        return false;
-      case bishopWhite:
-        return false;
-      case knightWhite:
-        return false;
-      case rookWhite:
-        return false;
-      case pawnWhite:
-        return false;
-      case kingBlack:
-        return false;
-      case queenBlack:
-        return false;
-      case bishopBlack:
-        return false;
-      case knightBlack:
-        return false;
-      case rookBlack:
-        return false;
-      case pawnBlack:
-        return false
-      default:
-        return true;
-    }
-  
+  switch (spot) {
+    case kingWhite:
+      return false;
+    case queenWhite:
+      return false;
+    case bishopWhite:
+      return false;
+    case knightWhite:
+      return false;
+    case rookWhite:
+      return false;
+    case pawnWhite:
+      return false;
+    case kingBlack:
+      return false;
+    case queenBlack:
+      return false;
+    case bishopBlack:
+      return false;
+    case knightBlack:
+      return false;
+    case rookBlack:
+      return false;
+    case pawnBlack:
+      return false;
+    default:
+      return true;
+  }
 }
 
 function straightMove() {
-  numb = moveFromN
-  lette = moveFromL
-  let equalsquare = false
-  let edgeOfBoard = false
+  numb = moveFromN;
+  lette = moveFromL;
+  let equalsquare = false;
+  let edgeOfBoard = false;
   Ogsquare = boardArrayRep[numb][lette];
   MoveToSquare = boardArrayRep[movetoN][movetoL];
-  for(let item = 1; item < boardArrayRep.length; i++) {
-    for(let square = 1; square < boardArrayRep[item].length; square++)  {
-      if (boardArrayRep[item][square] = Ogsquare) {
-          while(edgeOfBoard == false) {
-            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-             edgeOfBoard = true
-         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
-             equalsquare = true
-             edgeOfBoard = true
-             console.log("Clunie is gay")
-             if (whiteTurn == true) {
-              whiteTurn = false
+  for (let item = 1; item < boardArrayRep.length; item++) {
+    for (let square = 1; square < boardArrayRep[item].length; square++) {
+      if ((boardArrayRep[item][square] = Ogsquare)) {
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is great");
+            if (whiteTurn == true) {
+              whiteTurn = false;
             } else {
-              whiteTurn = true
+              whiteTurn = true;
             }
-             executeMove()
-             return;
-           } else {
-              lette--
-              console.log(numb, lette)
-            }
+            executeMove();
+            return;
+          } else {
+            lette--;
+            console.log(numb, lette);
           }
-          numb = moveFromN
-          lette = moveFromL
-          edgeOfBoard = false
-          while(edgeOfBoard == false) { // up and right
-             if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-              edgeOfBoard = true
-          } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
-              equalsquare = true
-              edgeOfBoard = true
-              console.log("Clunie is stinky")
-              if (whiteTurn == true) {
-                whiteTurn = false
-              } else {
-                whiteTurn = true
-              }
-               executeMove()
-              return;
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          // up and right
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is sexy");
+            if (whiteTurn == true) {
+              whiteTurn = false;
             } else {
-              lette++
-              console.log(numb, lette)
+              whiteTurn = true;
             }
+            executeMove();
+            return;
+          } else {
+            lette++;
+            console.log(numb, lette);
           }
-          numb = moveFromN
-          lette = moveFromL
-          edgeOfBoard = false
-          while(edgeOfBoard == false) {
-            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-             edgeOfBoard = true
-         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
-             equalsquare = true
-             edgeOfBoard = true
-             console.log("Clunie is gay")
-             if (whiteTurn == true) {
-              whiteTurn = false
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is hot");
+            if (whiteTurn == true) {
+              whiteTurn = false;
             } else {
-              whiteTurn = true
+              whiteTurn = true;
             }
-             executeMove()
-             return;
-           } else {
-              numb--
-              console.log(numb, lette)
-            }
+            executeMove();
+            return;
+          } else {
+            numb--;
+            console.log(numb, lette);
           }
-          numb = moveFromN
-          lette = moveFromL
-          edgeOfBoard = false
-          while(edgeOfBoard == false) {
-            if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-             edgeOfBoard = true
-         } else if(MoveToSquare == boardArrayRep[numb][lette]) { //fix needed
-             equalsquare = true
-             edgeOfBoard = true
-             console.log("Clunie is gay")
-             if (whiteTurn == true) {
-              whiteTurn = false
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is smart");
+            if (whiteTurn == true) {
+              whiteTurn = false;
             } else {
-              whiteTurn = true
+              whiteTurn = true;
             }
-             executeMove()
-             return;
-           } else {
-              numb++
-              console.log(numb, lette)
-            }
+            executeMove();
+            return;
+          } else {
+            numb++;
+            console.log(numb, lette);
           }
-          numb = moveFromN
-          lette = moveFromL
-          edgeOfBoard = false
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
       }
     }
   }
+}
+
+function kingMovement() {
+  numb = moveFromN;
+  lette = moveFromL;
+  let equalsquare = false;
+  let edgeOfBoard = false;
+  Ogsquare = boardArrayRep[numb][lette];
+  MoveToSquare = boardArrayRep[movetoN][movetoL];
+  if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+    edgeOfBoard = true;
+    return;
+  } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+    equalsquare = true;
+    edgeOfBoard = true;
+    console.log("Clunie is not gay");
+    if (whiteTurn == true) {
+      whiteTurn = false;
+    } else {
+      whiteTurn = true;
+    }
+    executeMove();
+    return;
+  } 
+}
+
+function knightMovement() {
+  numb = moveFromN
+  lette = moveFromL
+  
 }
