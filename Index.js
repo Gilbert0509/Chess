@@ -40,22 +40,63 @@ const pawnWhite = "♟";
 
 const kingWhite = "♚";
 
+function whatMove(piece) {
+  switch (piece) {
+    case kingWhite:
+      // king move
+      break;
+    case queenWhite:
+      diagMove()
+      straightMove()
+      break;
+    case bishopWhite:
+      diagMove()
+      break;
+    case knightWhite:
+      //knight move;
+      break;
+    case rookWhite:
+      straightMove;
+      break;
+    case pawnWhite:
+      pawnMove();
+      break;
+    case kingBlack:
+      //king movement
+      break;
+    case queenBlack:
+      diagMove();
+      straightMove();
+      break;
+    case bishopBlack:
+      diagMove();
+      break;
+    case knightBlack:
+      //knight movement;
+      break;
+    case rookBlack:
+      straightMove();
+      break;
+    case pawnBlack:
+      pawnMove();
+    default:
+      return false;
+  }
+}
+
 let moveFromL;
 let moveFromN;
 let moveFromP;
 let movetoL;
 let movetoN;
 function input(input) {
-  if ((Math.random()*100) == 1){
-    jacksAutism("N words in paris")
-  }
   moveFromL = prompt("What was the letter the piece is on");
   moveFromN = prompt("What was the number the piece is on");
   moveFromP = prompt("What is the piece");
   movetoL = prompt("What letter are you moving it to?");
   movetoN = prompt("What number are you moving it to?");
   translateMove(moveFromL, moveFromN);
-  diagMove();
+  straightMove();
 }
 let num = moveFromN
 let lete = moveFromL
@@ -63,23 +104,23 @@ function display() {
   displayBoard.forEach((index, i) => {
     if (i != 0) {
       console.log(
-        " " +
+        "  " +
           index[1][0] +
-          " " +
+          "  " +
           index[2][0] +
-          " " +
+          "  " +
           index[3][0] +
-          " " +
+          "  " +
           index[4][0] +
-          " " +
+          "  " +
           index[5][0] +
-          " " +
+          "  " +
           index[6][0] +
-          " " +
+          "  " +
           index[7][0] +
-          " " +
+          "  " +
           index[8][0] +
-          " "
+          "  "
       );
     }
   });
@@ -401,7 +442,7 @@ function executeMove() {
       });
     });
   } else {
-    input();
+    turn();
   }
 }
 function pawnMove() {
@@ -432,9 +473,13 @@ function pawnMove() {
 }
 let alive = true;
 let n;
+
+function turn() {
+  display()
+  input()
+}
 while ((alive = true)) {
-  display();
-  input();
+  turn()
 }
 
 function diagMove() {
@@ -546,6 +591,37 @@ function diagMove() {
   }
 }
 
+function checkPie(spot) {
+    switch (spot) {
+      case kingWhite:
+        return false;
+      case queenWhite:
+        return false;
+      case bishopWhite:
+        return false;
+      case knightWhite:
+        return false;
+      case rookWhite:
+        return false;
+      case pawnWhite:
+        return false;
+      case kingBlack:
+        return false;
+      case queenBlack:
+        return false;
+      case bishopBlack:
+        return false;
+      case knightBlack:
+        return false;
+      case rookBlack:
+        return false;
+      case pawnBlack:
+        return false
+      default:
+        return true;
+    }
+  
+}
 
 function straightMove() {
   numb = moveFromN
@@ -572,7 +648,6 @@ function straightMove() {
              executeMove()
              return;
            } else {
-              numb--
               lette--
               console.log(numb, lette)
             }
@@ -595,8 +670,7 @@ function straightMove() {
                executeMove()
               return;
             } else {
-              numb++
-              lette--
+              lette++
               console.log(numb, lette)
             }
           }
@@ -619,7 +693,6 @@ function straightMove() {
              return;
            } else {
               numb--
-              lette++
               console.log(numb, lette)
             }
           }
@@ -642,15 +715,12 @@ function straightMove() {
              return;
            } else {
               numb++
-              lette++
               console.log(numb, lette)
             }
           }
           numb = moveFromN
           lette = moveFromL
           edgeOfBoard = false
-          console.log(n)
-          n++
       }
     }
   }
