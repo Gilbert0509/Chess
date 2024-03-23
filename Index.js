@@ -4,6 +4,8 @@ let whiteTurn = true;
 //Github initalised
 let jack = "¶";
 
+let thisMove = true
+
 let lette;
 let numb;
 //ChessBoard
@@ -41,6 +43,7 @@ const pawnWhite = "♟";
 const kingWhite = "♚";
 
 function whatMove(piece) {
+  thisMove = true
   switch (piece) {
     case kingWhite:
       kingMovementOne()
@@ -57,7 +60,7 @@ function whatMove(piece) {
       //knight move;
       break;
     case rookWhite:
-      straightMove;
+      straightMove();
       break;
     case pawnWhite:
       pawnMove();
@@ -88,10 +91,9 @@ function whatMove(piece) {
 
 let moveFromL;
 let moveFromN;
-let moveFromP;
 let movetoL;
 let movetoN;
-function input(input) {
+function input() {
   moveFromL = prompt("What was the letter the piece is on:");
   moveFromN = prompt("What was the number the piece is on:");
   movetoL = prompt("What letter are you moving it to?:");
@@ -100,8 +102,6 @@ function input(input) {
   whatMove(displayBoard[moveFromN][moveFromL][0]);
 }
 
-let num = moveFromN;
-let lete = moveFromL;
 function display() {
   console.log("   " + "a" + "  " + "b" + "  " + "c" + "  " + "d" + "  " + "e" + "  " + "f" + "  " + "g" + "  " + "h");
   displayBoard.forEach((index, i) => {
@@ -260,6 +260,7 @@ let displayBoard = [
     [rookWhite, squareWhite],
   ],
 ];
+console.log(displayBoard[1][1][0])
 let Ogsquare;
 let MoveToSquare;
 let cluniesMum;
@@ -451,14 +452,14 @@ function translateMove(moveFroml, moveFromn) {
   }
 }
 let possibleMove = true;
-function executeMove() {
-  boardArrayRep.forEach((item, index) => {
-    item.forEach((square, i) => {
-      if (square == MoveToSquare) {
-        possibleMove = true
-      }
-    });
+boardArrayRep.forEach((item, index) => {
+  item.forEach((square, i) => {
+    if (square == MoveToSquare) {
+      marisaCurls(displayBoard[index][i][0]);
+    }
   });
+});
+function executeMove() {
   if (possibleMove == true) {
     boardArrayRep.forEach((item, index) => {
       item.forEach((square, i) => {
@@ -476,7 +477,7 @@ function executeMove() {
       });
     });
   } else {
-    turn();
+    turn()
   }
 }
 function pawnMove() {
@@ -508,7 +509,21 @@ function pawnMove() {
 let alive = true;
 let n;
 
+let equalsquare = false;
+let edgeOfBoard = false;
+
 function turn() {
+  boardArrayRep = [
+    [],
+    [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    [0, 12, 22, 32, 42, 52, 62, 72, 82],
+    [0, 13, 23, 33, 43, 53, 63, 73, 83],
+    [0, 14, 24, 34, 44, 54, 64, 74, 84],
+    [0, 15, 25, 35, 45, 55, 65, 75, 85],
+    [0, 16, 26, 36, 46, 56, 66, 76, 86],
+    [0, 17, 27, 37, 47, 57, 67, 77, 87],
+    [0, 18, 28, 38, 48, 58, 68, 78, 88],
+  ];
   if (whiteTurn == true) {
   display();
   } else {
@@ -516,6 +531,7 @@ function turn() {
   }
   input();
 }
+let antiDissapear;
 while ((alive = true)) {
   turn();
 }
@@ -523,8 +539,8 @@ while ((alive = true)) {
 function diagMove() {
   numb = moveFromN;
   lette = moveFromL;
-  let equalsquare = false;
-  let edgeOfBoard = false;
+  equalsquare = false;
+  edgeOfBoard = false;
   Ogsquare = boardArrayRep[numb][lette];
   MoveToSquare = boardArrayRep[movetoN][movetoL];
   for (let item = 1; item < boardArrayRep.length; item++) {
@@ -534,16 +550,15 @@ function diagMove() {
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
-            //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is jacked");
+            console.log("Clunie is jacked diag");
+            executeMove();
             if (whiteTurn == true) {
               whiteTurn = false;
             } else {
               whiteTurn = true;
             }
-            executeMove();
             return;
           } else {
             numb--;
@@ -562,13 +577,13 @@ function diagMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is handsome");
+            console.log("Clunie is handsome diag");
+            executeMove();
             if (whiteTurn == true) {
               whiteTurn = false;
             } else {
               whiteTurn = true;
             }
-            executeMove();
             return;
           } else {
             numb++;
@@ -586,13 +601,13 @@ function diagMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is buetiful");
+            console.log("Clunie is buetiful diag");
+            executeMove();
             if (whiteTurn == true) {
               whiteTurn = false;
             } else {
               whiteTurn = true;
             }
-            executeMove();
             return;
           } else {
             numb--;
@@ -610,13 +625,13 @@ function diagMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is amazing");
+            console.log("Clunie is amazing diag");
+            executeMove();
             if (whiteTurn == true) {
               whiteTurn = false;
             } else {
               whiteTurn = true;
             }
-            executeMove();
             return;
           } else {
             numb++;
@@ -626,6 +641,9 @@ function diagMove() {
         }
         numb = moveFromN;
         lette = moveFromL;
+        let thisMove = false
+        console.log(thisMove)
+        return;
       }
     }
   }
@@ -663,6 +681,11 @@ function checkPie(spot) {
 }
 
 function straightMove() {
+  if (displayBoard[1][1][0] == rookBlack) {
+    antiDissapear = true
+  } else {
+    antiDissapear = false
+  }
   numb = moveFromN;
   lette = moveFromL;
   let equalsquare = false;
@@ -679,17 +702,22 @@ function straightMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is great");
+            console.log("Clunie is jacked");
+            executeMove();
+            if (antiDissapear == true) {
+              if (Ogsquare != 1) {
+              displayBoard[1][1][0] = rookBlack
+              }
+            }
+            console.log(displayBoard[1][1][0])
             if (whiteTurn == true) {
               whiteTurn = false;
             } else {
               whiteTurn = true;
             }
-            executeMove();
             return;
           } else {
-            lette--;
-            console.log(numb, lette);
+            numb--;
           }
         }
         numb = moveFromN;
@@ -703,63 +731,75 @@ function straightMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is sexy");
+            console.log("Clunie is handsome");
+            executeMove();
+            if (antiDissapear == true) {
+              if (Ogsquare != 1) {
+              displayBoard[1][1][0] = rookBlack
+              }
+            }
             if (whiteTurn == true) {
               whiteTurn = false;
             } else {
               whiteTurn = true;
             }
-            executeMove();
-            return;
-          } else {
-            lette++;
-            console.log(numb, lette);
-          }
-        }
-        numb = moveFromN;
-        lette = moveFromL;
-        edgeOfBoard = false;
-        while (edgeOfBoard == false) {
-          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-            edgeOfBoard = true;
-          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
-            //fix needed
-            equalsquare = true;
-            edgeOfBoard = true;
-            console.log("Clunie is hot");
-            if (whiteTurn == true) {
-              whiteTurn = false;
-            } else {
-              whiteTurn = true;
-            }
-            executeMove();
-            return;
-          } else {
-            numb--;
-            console.log(numb, lette);
-          }
-        }
-        numb = moveFromN;
-        lette = moveFromL;
-        edgeOfBoard = false;
-        while (edgeOfBoard == false) {
-          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
-            edgeOfBoard = true;
-          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
-            //fix needed
-            equalsquare = true;
-            edgeOfBoard = true;
-            console.log("Clunie is smart");
-            if (whiteTurn == true) {
-              whiteTurn = false;
-            } else {
-              whiteTurn = true;
-            }
-            executeMove();
             return;
           } else {
             numb++;
-            console.log(numb, lette);
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is buetiful");
+            executeMove();
+            if (antiDissapear == true) {
+              if (Ogsquare != 1) {
+              displayBoard[1][1][0] = rookBlack
+              }
+            }
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            return;
+          } else {
+            lette++;
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        while (edgeOfBoard == false) {
+          if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is amazing");
+            executeMove();
+            if (antiDissapear == true) {
+              if (Ogsquare != 1) {
+              displayBoard[1][1][0] = rookBlack
+              }
+            }
+            if (whiteTurn == true) {
+              whiteTurn = false;
+            } else {
+              whiteTurn = true;
+            }
+            return;
+          } else {
+            lette--;
           }
         }
         numb = moveFromN;
