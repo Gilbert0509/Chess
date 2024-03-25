@@ -826,6 +826,9 @@ function kingMovementOne() {
     for (let square = 1; square < 2; square++) {
       if ((boardArrayRep[item][square] = Ogsquare)) {
         if (edgeOfBoard == false) {
+          numb--;
+          lette--;
+          console.log(numb, lette);
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
@@ -840,16 +843,15 @@ function kingMovementOne() {
             }
             executeMove();
             return;
-          } else {
-            numb--;
-            lette--;
-            console.log(numb, lette);
           }
         }
         numb = moveFromN;
         lette = moveFromL;
         edgeOfBoard = false;
         if (edgeOfBoard == false) {
+          numb++;
+          lette--;
+          console.log(numb, lette);
           // up and right
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
@@ -865,16 +867,15 @@ function kingMovementOne() {
             }
             executeMove();
             return;
-          } else {
-            numb++;
-            lette--;
-            console.log(numb, lette);
           }
         }
         numb = moveFromN;
         lette = moveFromL;
         edgeOfBoard = false;
         if (edgeOfBoard == false) {
+          numb--;
+          lette++;
+          console.log(numb, lette);
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
@@ -889,16 +890,15 @@ function kingMovementOne() {
             }
             executeMove();
             return;
-          } else {
-            numb--;
-            lette++;
-            console.log(numb, lette);
           }
         }
         numb = moveFromN;
         lette = moveFromL;
         edgeOfBoard = false;
         if (edgeOfBoard == false) {
+          numb++;
+          lette++;
+          console.log(numb, lette);
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
@@ -913,10 +913,6 @@ function kingMovementOne() {
             }
             executeMove();
             return;
-          } else {
-            numb++;
-            lette++;
-            console.log(numb, lette);
           }
         }
         numb = moveFromN;
@@ -936,6 +932,8 @@ function kingMovementTwo() {
     for (let square = 1; square < 2; square++) {
       if ((boardArrayRep[item][square] = Ogsquare)) {
         if (edgeOfBoard == false) {
+          lette--;
+          console.log(numb, lette);
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
@@ -950,15 +948,14 @@ function kingMovementTwo() {
             }
             executeMove();
             return;
-          } else {
-            lette--;
-            console.log(numb, lette);
           }
         }
         numb = moveFromN;
         lette = moveFromL;
         edgeOfBoard = false;
         if (edgeOfBoard == false) {
+          lette++;
+          console.log(numb, lette);
           // up and right
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
@@ -974,15 +971,14 @@ function kingMovementTwo() {
             }
             executeMove();
             return;
-          } else {
-            lette++;
-            console.log(numb, lette);
           }
         }
         numb = moveFromN;
         lette = moveFromL;
         edgeOfBoard = false;
         if (edgeOfBoard == false) {
+          numb--;
+          console.log(numb, lette);
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
@@ -997,15 +993,14 @@ function kingMovementTwo() {
             }
             executeMove();
             return;
-          } else {
-            numb--;
-            console.log(numb, lette);
           }
         }
         numb = moveFromN;
         lette = moveFromL;
         edgeOfBoard = false;
         if (edgeOfBoard == false) {
+          numb++;
+          console.log(numb, lette);
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
@@ -1020,9 +1015,6 @@ function kingMovementTwo() {
             }
             executeMove();
             return;
-          } else {
-            numb++;
-            console.log(numb, lette);
           }
         }
         numb = moveFromN;
@@ -1035,7 +1027,7 @@ function kingMovementTwo() {
 function knightMovement() {
   numb = moveFromN
   lette = moveFromL
-  
+
 }
 
 
