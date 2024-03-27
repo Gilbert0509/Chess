@@ -94,13 +94,17 @@ let moveFromN;
 let movetoL;
 let movetoN;
 function input() {
-  moveFromL = prompt("What was the  the piece is on:");
+  moveFromL = prompt("What was the letter the piece is on:");
   moveFromN = prompt("What was the number the piece is on:");
   movetoL = prompt("What letter are you moving it to?:");
   movetoN = prompt("What number are you moving it to?:");
-  translateMove(moveFromL, moveFromN);
+  let check = translateMove(moveFromL, moveFromN);
+  if (check == false) {
+    console.log("Incorrect Input")
+    input()
+  } else {
   whatMove(displayBoard[moveFromN][moveFromL][0]);
-}
+}}
 
 function display() {
   console.log("   " + "a" + "  " + "b" + "  " + "c" + "  " + "d" + "  " + "e" + "  " + "f" + "  " + "g" + "  " + "h");
@@ -180,14 +184,14 @@ let displayBoard = [
   [],
   [
     0,
-    [rookBlack, squareWhite],
-    [knightBlack, squareBlack],
-    [bishopBlack, squareWhite],
-    [queenBlack, squareBlack],
-    [kingBlack, squareWhite],
-    [bishopBlack, squareBlack],
-    [knightBlack, squareWhite],
-    [rookBlack, squareBlack],
+    [rookBlack, squareWhite, false],
+    [knightBlack, squareBlack, false],
+    [bishopBlack, squareWhite, false],
+    [queenBlack, squareBlack, false],
+    [kingBlack, squareWhite, false],
+    [bishopBlack, squareBlack, false],
+    [knightBlack, squareWhite, false],
+    [rookBlack, squareBlack, false],
   ],
   [
     0,
@@ -202,47 +206,47 @@ let displayBoard = [
   ],
   [
     0,
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
   ],
   [
     0,
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
   ],
   [
     0,
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
   ],
   [
     0,
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
-    [squareBlack, squareBlack],
-    [squareWhite, squareWhite],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
   ],
   [
     0,
@@ -257,14 +261,14 @@ let displayBoard = [
   ],
   [
     0,
-    [rookWhite, squareBlack],
-    [knightWhite, squareWhite],
-    [bishopWhite, squareBlack],
-    [queenWhite, squareWhite],
-    [kingWhite, squareBlack],
-    [bishopWhite, squareWhite],
-    [knightWhite, squareBlack],
-    [rookWhite, squareWhite],
+    [rookWhite, squareBlack, false],
+    [knightWhite, squareWhite, false],
+    [bishopWhite, squareBlack, false],
+    [queenWhite, squareWhite, false],
+    [kingWhite, squareBlack, false],
+    [bishopWhite, squareWhite, false],
+    [knightWhite, squareBlack, false],
+    [rookWhite, squareWhite, false],
   ],
 ];
 console.log(displayBoard[1][1][0])
@@ -363,8 +367,7 @@ function translateMove(moveFroml, moveFromn) {
       moveFromL = 8;
       break;
     default:
-      console.log("Clunie");
-      break;
+      return false
   }
   lette = moveFromL;
   //Number translate
@@ -394,8 +397,7 @@ function translateMove(moveFroml, moveFromn) {
       moveFromN = 1;
       break;
     default:
-      console.log("Josh");
-      break;
+      return false
   }
   numb = moveFromN;
   switch (movetoL) {
@@ -424,8 +426,7 @@ function translateMove(moveFroml, moveFromn) {
       movetoL = 8;
       break;
     default:
-      console.log("Clunie");
-      break;
+      return false
   }
   //Number translate
   switch (movetoN) {
@@ -454,8 +455,7 @@ function translateMove(moveFroml, moveFromn) {
       movetoN = 1;
       break;
     default:
-      console.log("Josh");
-      break;
+      return false
   }
 }
 let possibleMove = true;
@@ -490,6 +490,16 @@ function pawnMove() {
   if (whiteTurn == true) {
     Ogsquare = boardArrayRep[moveFromN][moveFromL];
     MoveToSquare = boardArrayRep[movetoN][movetoL];
+    if (displayBoard[moveFromN][moveFromL][2] == true) {
+      if (MoveToSquare == boardArrayRep[moveFromN - 2][moveFromL]) {
+        if (checkPie(displayBoard[moveFromN - 2][movetoL][0]) == true) {
+          executeMove();
+          return;
+        } else {
+          console.log("You cannot move it here dumbass");
+        }
+      }
+    }
     moveFromN = moveFromN - 1;
     if (MoveToSquare == boardArrayRep[moveFromN][moveFromL]) {
        if (checkPie(displayBoard[moveFromN][movetoL][0]) == true) {
@@ -510,6 +520,16 @@ function pawnMove() {
   } else if (whiteTurn == false) {
     Ogsquare = boardArrayRep[moveFromN][moveFromL];
     MoveToSquare = boardArrayRep[movetoN][movetoL];
+    if (displayBoard[moveFromN][moveFromL][2] == true) {
+      if (MoveToSquare == boardArrayRep[moveFromN + 2][moveFromL]) {
+        if (checkPie(displayBoard[moveFromN + 2][movetoL][0]) == true) {
+          executeMove();
+          return;
+        } else {
+          console.log("You cannot move it here dumbass");
+        }
+      }
+    }
     moveFromN = moveFromN + 1;
     if (MoveToSquare == boardArrayRep[moveFromN][moveFromL]) {
       if (checkPie(displayBoard[moveFromN][movetoL][0]) == true) {
@@ -578,7 +598,9 @@ function diagMove() {
             console.log("Clunie is jacked diag");
             executeMove();
             return;
-          } else {
+          } else if(checkPie(displayBoard[numb][lette][0]) == false) {
+            edgeOfBoard = true
+          }  else {
             numb--;
             lette--;
             console.log(numb, lette);
@@ -598,7 +620,9 @@ function diagMove() {
             console.log("Clunie is handsome diag");
             executeMove();
             return;
-          } else {
+          } else if(checkPie(displayBoard[numb][lette][0]) == false) {
+            edgeOfBoard = true
+          }  else {
             numb++;
             lette--;
             console.log(numb, lette);
@@ -617,7 +641,9 @@ function diagMove() {
             console.log("Clunie is buetiful diag");
             executeMove();
             return;
-          } else {
+          } else if(checkPie(displayBoard[numb][lette][0]) == false) {
+            edgeOfBoard = true
+          }  else {
             numb--;
             lette++;
             console.log(numb, lette);
@@ -636,6 +662,8 @@ function diagMove() {
             console.log("Clunie is amazing diag");
             executeMove();
             return;
+          } else if(checkPie(displayBoard[numb][lette][0]) == false) {
+            edgeOfBoard = true
           } else {
             numb++;
             lette++;
@@ -714,7 +742,9 @@ function straightMove() {
             }
             console.log(displayBoard[1][1][0])
             return;
-          } else {
+          } else if(checkPie(displayBoard[numb][lette][0]) == false) {
+            edgeOfBoard = true
+          }  else {
             numb--;
           }
         }
@@ -736,7 +766,9 @@ function straightMove() {
               displayBoard[1][1][0] = rookBlack
               }
             }
-          } else {
+          } else if(checkPie(displayBoard[numb][lette][0]) == false) {
+            edgeOfBoard = true
+          }  else {
             numb++;
           }
         }
@@ -758,7 +790,9 @@ function straightMove() {
               whiteTurn = true;
             }
             return;
-          } else {
+          } else if(checkPie(displayBoard[numb][lette][0]) == false) {
+            edgeOfBoard = true
+          }  else {
             lette++;
           }
         }
@@ -780,7 +814,9 @@ function straightMove() {
               }
             }
             return;
-          } else {
+          } else if(checkPie(displayBoard[numb][lette][0]) == false) {
+            edgeOfBoard = true
+          }  else {
             lette--;
           }
         }
