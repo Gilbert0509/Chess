@@ -493,6 +493,8 @@ function pawnMove() {
     if (displayBoard[moveFromN][moveFromL][2] == true) {
       if (MoveToSquare == boardArrayRep[moveFromN - 2][moveFromL]) {
         if (checkPie(displayBoard[moveFromN - 2][movetoL][0]) == true) {
+          displayBoard[moveFromN][movetoL][0] = false
+          displayBoard[moveFromN - 1][movetoL][0] = true
           executeMove();
           return;
         } else {
@@ -513,6 +515,14 @@ function pawnMove() {
          executeMove();
          return;
         }
+    } else if (displayBoard[moveFromN][moveFromL+1][2] == true) {
+      executeMove()
+      displayBoard[moveFromN][moveFromL+1][2] = false
+      displayBoard[moveFromN - 1][moveFromL+1][0] = displayBoard[moveFromN - 1][moveFromL+1][1]
+    } else if (displayBoard[moveFromN][moveFromL-1][2] == true) {
+      executeMove()
+      displayBoard[moveFromN][moveFromL-1][2] = false
+      displayBoard[moveFromN - 1][moveFromL-1][0] = displayBoard[moveFromN - 1][moveFromL-1][1]
     } else {
       console.log("You cannot move it here dumbass");
       input();
@@ -523,6 +533,8 @@ function pawnMove() {
     if (displayBoard[moveFromN][moveFromL][2] == true) {
       if (MoveToSquare == boardArrayRep[moveFromN + 2][moveFromL]) {
         if (checkPie(displayBoard[moveFromN + 2][movetoL][0]) == true) {
+          displayBoard[moveFromN][movetoL][0] = false
+          displayBoard[moveFromN + 1][movetoL][0] = true
           executeMove();
           return;
         } else {
@@ -543,6 +555,14 @@ function pawnMove() {
         executeMove();
         return;
        }
+    } else if (displayBoard[moveFromN][moveFromL+1][2] == true) {
+      executeMove()
+      displayBoard[moveFromN][moveFromL+1][2] = false
+      displayBoard[moveFromN + 1][moveFromL+1][0] = displayBoard[moveFromN - 1][moveFromL+1][1]
+    } else if (displayBoard[moveFromN][moveFromL-1][2] == true) {
+      executeMove()
+      displayBoard[moveFromN][moveFromL-1][2] = false
+      displayBoard[moveFromN + 1][moveFromL-1][0] = displayBoard[moveFromN - 1][moveFromL-1][1]
     }  else {
       console.log("You cannot move that here");
       input();
