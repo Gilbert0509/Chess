@@ -57,7 +57,7 @@ function whatMove(piece) {
       diagMove();
       break;
     case knightWhite:
-      //knight move;
+      knightMovement();
       break;
     case rookWhite:
       straightMove();
@@ -77,7 +77,7 @@ function whatMove(piece) {
       diagMove();
       break;
     case knightBlack:
-      //knight movement;
+      knightMovement()
       break;
     case rookBlack:
       straightMove();
@@ -953,9 +953,161 @@ function kingMovementTwo() {
 }
 
 function knightMovement() {
-  numb = moveFromN
-  lette = moveFromL
-
+  numb = moveFromN;
+  lette = moveFromL;
+  let equalsquare = false;
+  let edgeOfBoard = false;
+  Ogsquare = boardArrayRep[numb][lette];
+  MoveToSquare = boardArrayRep[movetoN][movetoL];
+  for (let item = 1; item < 2; item++) {
+    for (let square = 1; square < 2; square++) {
+      if ((boardArrayRep[item][square] = Ogsquare)) {
+        if (edgeOfBoard == false) {
+          numb--;
+          numb--;
+          lette--;
+          if (numb >= 9 || numb <= 0 || lette <= 0 || lette >= 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is jacked");
+            executeMove();
+            return;
+          }
+        } 
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        if (edgeOfBoard == false) {
+          numb++;
+          numb++;
+          lette--;
+          // up and right
+          if (numb >= 9 || numb <= 0 || lette <= 0 || lette >= 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is handsome");
+            executeMove();
+            return;
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        if (edgeOfBoard == false) {
+          numb--;
+          numb--;
+          lette++;
+          if (numb >= 9 || numb <= 0 || lette <= 0 || lette >= 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is buetiful");
+            executeMove();
+            return;
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        if (edgeOfBoard == false) {
+          numb++;
+          numb++;
+          lette++;
+          if (numb >= 9 || numb <= 0 || lette <= 0 || lette >= 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is amazing");
+            executeMove();
+            return;
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        if (edgeOfBoard == false) {
+          numb--;
+          lette--;
+          lette--;
+          if (numb >= 9 || numb <= 0 || lette <= 0 || lette >= 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is jacked");
+            executeMove();
+            return;
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        if (edgeOfBoard == false) {
+          numb++;
+          lette--;
+          lette--;
+          // up and right
+          if (numb >= 9 || numb <= 0 || lette <= 0 || lette >= 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is handsome");
+            executeMove();
+            return;
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        if (edgeOfBoard == false) {
+          numb--;
+          lette++;
+          lette++;
+          if (numb >= 9 || numb <= 0 || lette <= 0 || lette >= 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is buetiful");
+            executeMove();
+            return;
+          }
+        }
+        numb = moveFromN;
+        lette = moveFromL;
+        edgeOfBoard = false;
+        if (edgeOfBoard == false) {
+          numb++;
+          lette++;
+          lette++;
+          if (numb >= 9 || numb <= 0 || lette <= 0 || lette >= 9) {
+            edgeOfBoard = true;
+          } else if (MoveToSquare == boardArrayRep[numb][lette]) {
+            //fix needed
+            equalsquare = true;
+            edgeOfBoard = true;
+            console.log("Clunie is amazing");
+            executeMove();
+            return;
+          }
+        }
+      }
+    }
+  }
 }
 
 
