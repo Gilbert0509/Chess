@@ -44,6 +44,7 @@ const kingWhite = "♚";
 
 
 function whatMove(piece) {
+  if (marisaCurls(piece) == false) {
   thisMove = true
   switch (piece) {
     case kingWhite:
@@ -87,6 +88,8 @@ function whatMove(piece) {
       pawnMove();
     default:
       return false;
+  }} else {
+    input()
   }
 }
 
@@ -287,63 +290,63 @@ function marisaCurls(curls) {
   if (whiteTurn == true) {
     switch (curls) {
       case kingWhite:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case queenWhite:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case bishopWhite:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case knightWhite:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case rookWhite:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case pawnWhite:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       default:
         possibleMove = true;
-        break;
+        return true;
     }
   }
   if (whiteTurn == false) {
     switch (curls) {
       case kingBlack:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case queenBlack:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case bishopBlack:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case knightBlack:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case rookBlack:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       case pawnBlack:
-        console.log("You cant move it here dumbass");
+        console.log("nuh uh");
         possibleMove = false;
-        break;
+        return false;
       default:
         possibleMove = true;
-        break;
+        return true;
     }
   }
 }
@@ -490,6 +493,13 @@ function executeMove() {
     boardArrayRep.forEach((item, index) => {
       item.forEach((square, i) => {
         if (square == MoveToSquare) {
+          if (displayBoard[index][i][0] == kingBlack) {
+            alive = false
+            console.log("Your black ass lost")
+          } if (displayBoard[index][i][0] == kingWhite) {
+            alive = false
+            console.log("yo white ass wun")
+          }
           displayBoard[index][i][0] = cluniesMum;
         }
       });
@@ -610,7 +620,7 @@ function turn() {
 
 let antiDissapear;
 
-while ((alive = true)) {
+while ((alive == true)) {
   turn();
 }
 
@@ -631,17 +641,17 @@ function diagMove() {
           console.log(boardArrayRep[numb][lette])
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
-            console.log("could be issue1")
+            //console.log("could be issue1")
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is jacked diag");
+            //console.log("Clunie is jacked diag");
             executeMove();
             return;
           } else if(checkPie(displayBoard[numb][lette][0]) == false) {
             edgeOfBoard = true
-            console.log("could be issue with me")
-            console.log(displayBoard[numb][lette][0])
+            //console.log("could be issue with me")
+           // console.log(displayBoard[numb][lette][0])
           }  else {
             numb--;
             lette--;
@@ -654,8 +664,8 @@ function diagMove() {
         numb++;
         lette--;
         while (edgeOfBoard == false) {
-          console.log(MoveToSquare)
-          console.log(boardArrayRep[numb][lette])
+         // console.log(MoveToSquare)
+         // console.log(boardArrayRep[numb][lette])
           // up and right
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
@@ -664,17 +674,17 @@ function diagMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is handsome diag");
+           // console.log("Clunie is handsome diag");
             executeMove();
             return;
           } else if(checkPie(displayBoard[numb][lette][0]) == false) {
             edgeOfBoard = true
-            console.log("could be issue with me")
-            console.log(displayBoard[numb][lette][0])
+           // console.log("could be issue with me")
+          //  console.log(displayBoard[numb][lette][0])
           }  else {
             numb++;
             lette--;
-            console.log(numb, lette);
+           // console.log(numb, lette);
           }
         }
         numb = moveFromN;
@@ -687,22 +697,22 @@ function diagMove() {
           console.log(boardArrayRep[numb][lette])
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
-            console.log("could be issue3")
+         //   console.log("could be issue3")
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is buetiful diag");
+         //   console.log("Clunie is buetiful diag");
             executeMove();
             return;
           } else if(checkPie(displayBoard[numb][lette][0]) == false) {
             edgeOfBoard = true
-            console.log("could be issue with me")
-            console.log(displayBoard[numb][lette][0])
+        //    console.log("could be issue with me")
+        //    console.log(displayBoard[numb][lette][0])
           }  else {
             numb--;
             lette++;
-            console.log(numb, lette);
+         //   console.log(numb, lette);
           }
         }
         numb = moveFromN;
@@ -711,32 +721,32 @@ function diagMove() {
         numb++;
         lette++;
         while (edgeOfBoard == false) {
-          console.log(MoveToSquare)
-          console.log(boardArrayRep[numb][lette])
+        //  console.log(MoveToSquare)
+        //  console.log(boardArrayRep[numb][lette])
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
             edgeOfBoard = true;
-            console.log("could be issue4")
+          //  console.log("could be issue4")
           } else if (MoveToSquare == boardArrayRep[numb][lette]) {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is amazing diag");
+          //  console.log("Clunie is amazing diag");
             executeMove();
             return;
           } else if(checkPie(displayBoard[numb][lette][0]) == false) {
             edgeOfBoard = true
-            console.log(displayBoard[numb][lette][0])
-            console.log("could be issue with me?")
+          //  console.log(displayBoard[numb][lette][0])
+          //  console.log("could be issue with me?")
           } else {
             numb++;
             lette++;
-            console.log(numb, lette);
+          //  console.log(numb, lette);
           }
         }
         numb = moveFromN;
         lette = moveFromL;
         let thisMove = false
-        console.log("ok so reaching here is a very very bad thing")
+      //  console.log("ok so reaching here is a very very bad thing")
         return;
       }
     }
@@ -797,14 +807,14 @@ function straightMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is jacked");
+            //console.log("Clunie is jacked");
             executeMove();
             if (antiDissapear == true) {
               if (Ogsquare != 1) {
               displayBoard[1][1][0] = rookBlack
               }
             }
-            console.log(displayBoard[1][1][0])
+            //console.log(displayBoard[1][1][0])
             return;
           } else if(checkPie(displayBoard[numb][lette][0]) == false) {
             edgeOfBoard = true
@@ -824,7 +834,7 @@ function straightMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is handsome");
+            //console.log("Clunie is handsome");
             executeMove();
             if (antiDissapear == true) {
               if (Ogsquare != 1) {
@@ -848,7 +858,7 @@ function straightMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is buetiful");
+            //console.log("Clunie is buetiful");
             executeMove();
             if (whiteTurn == true) {
               whiteTurn = false;
@@ -873,7 +883,7 @@ function straightMove() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is amazing");
+            //console.log("Clunie is amazing");
             executeMove();
             if (antiDissapear == true) {
               if (Ogsquare != 1) {
@@ -913,7 +923,7 @@ function kingMovementOne() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is jacked");
+            //console.log("Clunie is jacked");
             executeMove();
             return;
           }
@@ -931,7 +941,7 @@ function kingMovementOne() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is handsome");
+           // console.log("Clunie is handsome");
             executeMove();
             return;
           }
@@ -948,7 +958,7 @@ function kingMovementOne() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is buetiful");
+           // console.log("Clunie is buetiful");
             executeMove();
             return;
           }
@@ -965,7 +975,7 @@ function kingMovementOne() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is amazing");
+            //console.log("Clunie is amazing");
             executeMove();
             return;
           }
@@ -994,7 +1004,7 @@ function kingMovementTwo() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is great");
+            //console.log("Clunie is great");
             executeMove();
             return;
           }
@@ -1011,7 +1021,7 @@ function kingMovementTwo() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is sexy");
+            //console.log("Clunie is sexy");
             executeMove();
             return;
           }
@@ -1027,7 +1037,7 @@ function kingMovementTwo() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is hot");
+            //console.log("Clunie is hot");
             executeMove();
             return;
           }
@@ -1043,7 +1053,7 @@ function kingMovementTwo() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is smart");
+            //console.log("Clunie is smart");
             executeMove();
             return;
           }
