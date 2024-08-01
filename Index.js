@@ -44,6 +44,7 @@ const kingWhite = "♚";
 
 
 function whatMove(piece) {
+  console.log("here 1")
   if (marisaCurls(piece) == false) {
   thisMove = true
   switch (piece) {
@@ -88,10 +89,10 @@ function whatMove(piece) {
       pawnMove();
     default:
       return false;
-  }} else {
-    input()
   }
-}
+} else {
+  input()
+}}
 
 
 let moveFromL;
@@ -189,6 +190,61 @@ let boardArrayRep = [
   [0, 18, 28, 38, 48, 58, 68, 78, 88],
 ];
 
+function promotion() {
+  if (whiteTurn == true) {
+    if (movetoN == 1) {
+      let promotionPiece = prompt("What piece are you promoting to?:")
+      switch(promotionPiece) {
+        case "knight":
+          displayBoard[movetoL][movetoN][0] = knightWhite;
+          displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
+          break;
+        case "queen":
+          displayBoard[movetoL][movetoN][0] = queenWhite;
+          displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
+          break;
+        case "rook":
+          displayBoard[movetoL][movetoN][0] = rookWhite;
+          displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
+          break;
+        case "bishop":
+          displayBoard[movetoL][movetoN][0] = bishopWhite;
+          displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
+          break;
+        default:
+          promotion()
+          return;
+      }
+    }
+  } else {
+    if (movetoN == 8) {
+      let promotionPiece = prompt("What piece are you promoting to?:")
+      switch(promotionPiece) {
+        case "knight":
+          displayBoard[movetoL][movetoN][0] = knightBlack;
+          displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];          
+          break;
+        case "queen":
+          displayBoard[movetoL][movetoN][0] = queenBlack;
+          displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
+          break;
+        case "rook":
+          displayBoard[movetoL][movetoN][0] = rookBlack;
+          displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
+          break;
+        case "bishop":
+          displayBoard[movetoL][movetoN][0] = bishopBlack;
+          displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
+          break;
+        default:
+          promotion();
+          return;
+      }
+    }
+  }
+  return false;
+}
+
 let displayBoard = [
   [],
   [
@@ -217,7 +273,7 @@ let displayBoard = [
     0,
     [squareWhite, squareWhite, false],
     [squareBlack, squareBlack, false],
-    [squareWhite, squareWhite, false],
+    [pawnWhite, squareWhite, false],
     [squareBlack, squareBlack, false],
     [squareWhite, squareWhite, false],
     [squareBlack, squareBlack, false],
@@ -253,7 +309,7 @@ let displayBoard = [
     [squareBlack, squareBlack, false],
     [squareWhite, squareWhite, false],
     [squareBlack, squareBlack, false],
-    [squareWhite, squareWhite, false],
+    [pawnBlack, squareWhite, false],
     [squareBlack, squareBlack, false],
     [squareWhite, squareWhite, false],
   ],
@@ -477,6 +533,7 @@ function executeMove() {
   boardArrayRep.forEach((item, index) => {
     item.forEach((square, i) => {
       if (square == MoveToSquare) {
+        console.log("here 2")
         marisaCurls(displayBoard[index][i][0]);
       }
     });
@@ -527,14 +584,29 @@ function pawnMove() {
     moveFromN = moveFromN - 1;
     if (MoveToSquare == boardArrayRep[moveFromN][moveFromL]) {
        if (checkPie(displayBoard[moveFromN][movetoL][0]) == true) {
+        //here
+        console.log(promotion())
+         if (promotion() == false) {
+        console.log("im here rn 1")
          executeMove();
+        } else {
+          console.log("Should NOT be here")
+          toggleTurn()
+          return
+        }
          return;
        } else {
          console.log("You cannot move it here dumbass");
        }
     } else if (MoveToSquare == boardArrayRep[moveFromN][moveFromL + 1] || MoveToSquare == boardArrayRep[moveFromN][moveFromL - 1]) {
          if (checkPie(displayBoard[movetoN][movetoL][0]) == false) {
-         executeMove();
+          // here
+          if (promotion() == false) {
+            executeMove();
+           } else {
+            toggleTurn()
+          return
+          }
          return;
         }
     } else if (displayBoard[moveFromN][moveFromL+1][2] == true) {
@@ -549,6 +621,7 @@ function pawnMove() {
       console.log("You cannot move it here dumbass");
       input();
     }
+    
   } else if (whiteTurn == false) {
     Ogsquare = boardArrayRep[moveFromN][moveFromL];
     MoveToSquare = boardArrayRep[movetoN][movetoL];
@@ -567,15 +640,27 @@ function pawnMove() {
     moveFromN = moveFromN + 1;
     if (MoveToSquare == boardArrayRep[moveFromN][moveFromL]) {
       if (checkPie(displayBoard[moveFromN][movetoL][0]) == true) {
-         executeMove();
+        //here
+        if (promotion() == false) {
+          executeMove();
+         } else {
+          toggleTurn()
+          return
+        }
          return;
        } else {
          console.log("You cannot move it here dumbass");
        }
     } else if (MoveToSquare == boardArrayRep[moveFromN][moveFromL + 1] || MoveToSquare == boardArrayRep[moveFromN][moveFromL - 1]) {
       if (checkPie(displayBoard[movetoN][movetoL][0]) == false) {
-        executeMove();
-        return;
+        //here
+        if (promotion() == false) {
+          executeMove();
+         } else {
+          toggleTurn()
+          return;
+        }
+         return;
        }
     } else if (displayBoard[moveFromN][moveFromL+1][2] == true) {
       executeMove()
