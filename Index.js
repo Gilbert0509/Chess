@@ -1,4 +1,17 @@
-let prompt = require("prompt-sync")();
+let ask = require("prompt-sync")();
+
+function prompt(words) {
+  let skibidi = ask(words)
+  if (skibidi.toLowerCase() == "concede") {
+    alive = false
+    if (whiteTurn == true) {
+      console.log("Damn Black is goated")
+    } else if (whiteTurn == false) {
+      console.log("BRO IS TRAAAASH")
+    }
+  }
+}
+
 console.log("");
 let whiteTurn = true;
 //Github initalised
@@ -101,16 +114,29 @@ let movetoL;
 let movetoN;
 function input() {
   moveFromL = prompt("What was the letter the piece is on:");
+  if (alive == false) {
+    return;
+  }
   moveFromN = prompt("What was the number the piece is on:");
+  if (alive == false) {
+    return;
+  }
   movetoL = prompt("What letter are you moving it to?:");
+  if (alive == false) {
+    return;
+  }
   movetoN = prompt("What number are you moving it to?:");
+  if (alive == false) {
+    return;
+  }
   let check = translateMove(moveFromL, moveFromN);
   if (check == false) {
     console.log("Incorrect Input")
     input()
   } else {
   whatMove(displayBoard[moveFromN][moveFromL][0]);
-}}
+  }
+}
 
 function display() {
   console.log("   " + "a" + "  " + "b" + "  " + "c" + "  " + "d" + "  " + "e" + "  " + "f" + "  " + "g" + "  " + "h");
@@ -191,26 +217,28 @@ let boardArrayRep = [
 ];
 
 function promotion() {
+  moveFromN = ogN 
   if (whiteTurn == true) {
+    console.log(displayBoard[moveFromL][moveFromN][0])
     if (movetoN == 1) {
       let promotionPiece = prompt("What piece are you promoting to?:")
       switch(promotionPiece) {
         case "knight":
           displayBoard[movetoL][movetoN][0] = knightWhite;
           displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
-          break;
+          return;
         case "queen":
           displayBoard[movetoL][movetoN][0] = queenWhite;
           displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
-          break;
+          return;
         case "rook":
           displayBoard[movetoL][movetoN][0] = rookWhite;
           displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
-          break;
+          return;
         case "bishop":
           displayBoard[movetoL][movetoN][0] = bishopWhite;
           displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
-          break;
+          return;
         default:
           promotion()
           return;
@@ -223,25 +251,26 @@ function promotion() {
         case "knight":
           displayBoard[movetoL][movetoN][0] = knightBlack;
           displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];          
-          break;
+          return;
         case "queen":
           displayBoard[movetoL][movetoN][0] = queenBlack;
           displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
-          break;
+          return;
         case "rook":
           displayBoard[movetoL][movetoN][0] = rookBlack;
           displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
-          break;
+          return;
         case "bishop":
           displayBoard[movetoL][movetoN][0] = bishopBlack;
           displayBoard[moveFromL][moveFromN][0] = displayBoard[moveFromL][moveFromN][1];
-          break;
+          return;
         default:
           promotion();
           return;
       }
     }
   }
+  console.log(displayBoard[moveFromL][moveFromN][0])
   return false;
 }
 
@@ -273,28 +302,6 @@ let displayBoard = [
     0,
     [squareWhite, squareWhite, false],
     [squareBlack, squareBlack, false],
-    [pawnWhite, squareWhite, false],
-    [squareBlack, squareBlack, false],
-    [squareWhite, squareWhite, false],
-    [squareBlack, squareBlack, false],
-    [squareWhite, squareWhite, false],
-    [squareBlack, squareBlack, false],
-  ],
-  [
-    0,
-    [squareBlack, squareBlack, false],
-    [squareWhite, squareWhite, false],
-    [squareBlack, squareBlack, false],
-    [squareWhite, squareWhite, false],
-    [squareBlack, squareBlack, false],
-    [squareWhite, squareWhite, false],
-    [squareBlack, squareBlack, false],
-    [squareWhite, squareWhite, false],
-  ],
-  [
-    0,
-    [squareWhite, squareWhite, false],
-    [squareBlack, squareBlack, false],
     [squareWhite, squareWhite, false],
     [squareBlack, squareBlack, false],
     [squareWhite, squareWhite, false],
@@ -309,7 +316,29 @@ let displayBoard = [
     [squareBlack, squareBlack, false],
     [squareWhite, squareWhite, false],
     [squareBlack, squareBlack, false],
-    [pawnBlack, squareWhite, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+  ],
+  [
+    0,
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+  ],
+  [
+    0,
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
+    [squareBlack, squareBlack, false],
+    [squareWhite, squareWhite, false],
     [squareBlack, squareBlack, false],
     [squareWhite, squareWhite, false],
   ],
@@ -321,7 +350,7 @@ let displayBoard = [
     [pawnWhite, squareBlack, true],
     [pawnWhite, squareWhite, true],
     [pawnWhite, squareBlack, true],
-    [pawnWhite, squareWhite, true],
+    [pawnBlack, squareWhite, true],
     [pawnWhite, squareBlack, true],
   ],
   [
@@ -565,7 +594,10 @@ function executeMove() {
   }
 }
 
+let ogN;
+
 function pawnMove() {
+  ogN = moveFromN
   if (whiteTurn == true) {
     Ogsquare = boardArrayRep[moveFromN][moveFromL];
     MoveToSquare = boardArrayRep[movetoN][movetoL];
@@ -585,12 +617,11 @@ function pawnMove() {
     if (MoveToSquare == boardArrayRep[moveFromN][moveFromL]) {
        if (checkPie(displayBoard[moveFromN][movetoL][0]) == true) {
         //here
-        console.log(promotion())
          if (promotion() == false) {
         console.log("im here rn 1")
          executeMove();
         } else {
-          console.log("Should NOT be here")
+          console.log("Should  be here")
           toggleTurn()
           return
         }
@@ -605,6 +636,7 @@ function pawnMove() {
             executeMove();
            } else {
             toggleTurn()
+            console.log("Here rn1")
           return
           }
          return;
@@ -625,6 +657,7 @@ function pawnMove() {
   } else if (whiteTurn == false) {
     Ogsquare = boardArrayRep[moveFromN][moveFromL];
     MoveToSquare = boardArrayRep[movetoN][movetoL];
+    if (moveFromN != 7) {
     if (displayBoard[moveFromN][moveFromL][2] == true) {
       if (MoveToSquare == boardArrayRep[moveFromN + 2][moveFromL]) {
         if (checkPie(displayBoard[moveFromN + 2][movetoL][0]) == true) {
@@ -636,7 +669,7 @@ function pawnMove() {
           console.log("You cannot move it here dumbass");
         }
       }
-    }
+    }}
     moveFromN = moveFromN + 1;
     if (MoveToSquare == boardArrayRep[moveFromN][moveFromL]) {
       if (checkPie(displayBoard[moveFromN][movetoL][0]) == true) {
@@ -644,6 +677,7 @@ function pawnMove() {
         if (promotion() == false) {
           executeMove();
          } else {
+          console.log("Here rn1")
           toggleTurn()
           return
         }
@@ -658,6 +692,7 @@ function pawnMove() {
           executeMove();
          } else {
           toggleTurn()
+          console.log("Here rn2")
           return;
         }
          return;
