@@ -1,5 +1,17 @@
+//BEFOREHAND KNOWLEDGE
+/*This is the main idea for the structure of the code.
+Basically we have two arrays, one is used for representing the board to the computer, it will use this to check if moves are possible. The other is used to display the 
+pieces to the board. The idea is you enter what square youre moving from, to. Then the system will do a couple things, 1st it will check what piece you want to move. Then 
+it will check if the move is therefore possible using one of the movement functions. Then using executeMove() it will try to execute the current move, it will check a few 
+things before doing so that the rest of the code doesnt check for. After this it will execute the move and move on with the game. Things that do not exist -
+en passant - i tried it (you can see it in the pawn movement function). This was roughly the time i gave up on the project so last i remember it did kinda work and kinda not
+castling - I simply forgot and instead of doing this again i would like to test my knowledge of C and try it in C
+
+Please be nice i did this ages ago and am noticing millions of ineficiencies. I did NOT plan this out and just kinda winged it so a lot of stuff doesnt mix well but pointers would be nice*/
+
 let ask = require("prompt-sync")();
 
+//checks if the user wants to concede
 function prompt(words) {
   let skibidi = ask(words)
   if (skibidi.toLowerCase() == "concede") {
@@ -9,6 +21,8 @@ function prompt(words) {
     } else if (whiteTurn == false) {
       console.log("BRO IS TRAAAASH")
     }
+  } else {
+    return skibidi;
   }
 }
 
@@ -55,7 +69,7 @@ const pawnWhite = "♟";
 
 const kingWhite = "♚";
 
-
+//checks the piece youve selected depending on where you said youre moving from, and runs the functions to check if you can execute the move
 function whatMove(piece) {
   console.log("here 1")
   if (marisaCurls(piece) == false) {
@@ -112,8 +126,10 @@ let moveFromL;
 let moveFromN;
 let movetoL;
 let movetoN;
+//takes the input
 function input() {
   moveFromL = prompt("What was the letter the piece is on:");
+  console.log(moveFromL)
   if (alive == false) {
     return;
   }
@@ -137,7 +153,7 @@ function input() {
   whatMove(displayBoard[moveFromN][moveFromL][0]);
   }
 }
-
+//these display board for black and white
 function display() {
   console.log("   " + "a" + "  " + "b" + "  " + "c" + "  " + "d" + "  " + "e" + "  " + "f" + "  " + "g" + "  " + "h");
   displayBoard.forEach((index, i) => {
@@ -204,6 +220,7 @@ function toggleTurn() {
   }
 }
 
+//what the code uses to check if there are possible moves
 let boardArrayRep = [
   [],
   [0, 1, 2, 3, 4, 5, 6, 7, 8],
@@ -273,7 +290,7 @@ function promotion() {
   console.log(displayBoard[moveFromL][moveFromN][0])
   return false;
 }
-
+//what the code uses to represent the board
 let displayBoard = [
   [],
   [
@@ -371,6 +388,7 @@ console.log(displayBoard[1][1][0])
 let Ogsquare;
 let MoveToSquare;
 let cluniesMum;
+//(ignore the variable name) this checks if youre trying to take one of your own pieces
 function marisaCurls(curls) {
   if (whiteTurn == true) {
     switch (curls) {
@@ -436,6 +454,7 @@ function marisaCurls(curls) {
   }
 }
 
+//need to redo this function at some point, it takes what youve entered and changes it into index numbers for the computer to use. Also if it is not possible to do this it returns false
 function translateMove(moveFroml, moveFromn) {
   //letter Translate
   switch (moveFroml) {
@@ -464,9 +483,10 @@ function translateMove(moveFroml, moveFromn) {
       moveFromL = 8;
       break;
     default:
+      console.log("Here1")
       return false
   }
-  lette = moveFromL;
+  lette = moveFromL; //woah i dont thing i use this ever again
   //Number translate
   switch (moveFromn) {
     case "1":
@@ -496,7 +516,7 @@ function translateMove(moveFroml, moveFromn) {
     default:
       return false
   }
-  numb = moveFromN;
+  numb = moveFromN; //neither this
   switch (movetoL) {
     case "a":
       movetoL = 1;
@@ -557,12 +577,11 @@ function translateMove(moveFroml, moveFromn) {
 }
 
 let possibleMove = true;
-
+//executes the move while checking a couple small general things as well
 function executeMove() {
   boardArrayRep.forEach((item, index) => {
     item.forEach((square, i) => {
-      if (square == MoveToSquare) {
-        console.log("here 2")
+      if (square == MoveToSquare) {//i realise now how inefective this whole function is mainly but at the time i hadnt coded all the individual functions to move pieces
         marisaCurls(displayBoard[index][i][0]);
       }
     });
@@ -581,12 +600,12 @@ function executeMove() {
         if (square == MoveToSquare) {
           if (displayBoard[index][i][0] == kingBlack) {
             alive = false
-            console.log("Your black ass lost")
+            console.log("black lost")
           } if (displayBoard[index][i][0] == kingWhite) {
             alive = false
-            console.log("yo white ass wun")
+            console.log("white lost")
           }
-          displayBoard[index][i][0] = cluniesMum;
+          displayBoard[index][i][0] = cluniesMum; //again ignore variable name there was some beef at the time
         }
       });
     });
@@ -595,7 +614,7 @@ function executeMove() {
 }
 
 let ogN;
-
+//i dont even remember half of whats going on here. The pawn can do a lot of things i realised very quick
 function pawnMove() {
   ogN = moveFromN
   if (whiteTurn == true) {
@@ -618,10 +637,8 @@ function pawnMove() {
        if (checkPie(displayBoard[moveFromN][movetoL][0]) == true) {
         //here
          if (promotion() == false) {
-        console.log("im here rn 1")
          executeMove();
         } else {
-          console.log("Should  be here")
           toggleTurn()
           return
         }
@@ -636,7 +653,6 @@ function pawnMove() {
             executeMove();
            } else {
             toggleTurn()
-            console.log("Here rn1")
           return
           }
          return;
@@ -650,11 +666,11 @@ function pawnMove() {
       displayBoard[moveFromN][moveFromL-1][2] = false
       displayBoard[moveFromN + 1][moveFromL-1][0] = displayBoard[moveFromN + 1][moveFromL-1][1]
     } else {
-      console.log("You cannot move it here dumbass");
+      console.log("You cannot move it here ");
       input();
     }
     
-  } else if (whiteTurn == false) {
+  } else if (whiteTurn == false) {  //checks for blacks pawns
     Ogsquare = boardArrayRep[moveFromN][moveFromL];
     MoveToSquare = boardArrayRep[movetoN][movetoL];
     if (moveFromN != 7) {
@@ -666,7 +682,7 @@ function pawnMove() {
           executeMove();
           return;
         } else {
-          console.log("You cannot move it here dumbass");
+          console.log("You cannot move it here ");
         }
       }
     }}
@@ -677,13 +693,12 @@ function pawnMove() {
         if (promotion() == false) {
           executeMove();
          } else {
-          console.log("Here rn1")
           toggleTurn()
           return
         }
          return;
        } else {
-         console.log("You cannot move it here dumbass");
+         console.log("You cannot move it here ");
        }
     } else if (MoveToSquare == boardArrayRep[moveFromN][moveFromL + 1] || MoveToSquare == boardArrayRep[moveFromN][moveFromL - 1]) {
       if (checkPie(displayBoard[movetoN][movetoL][0]) == false) {
@@ -692,7 +707,6 @@ function pawnMove() {
           executeMove();
          } else {
           toggleTurn()
-          console.log("Here rn2")
           return;
         }
          return;
@@ -718,6 +732,8 @@ let n;
 let equalsquare = false;
 let edgeOfBoard = false;
 
+
+//if youre wondering why i am redefining board array rep it was cause of an old bug that im pretty sure refedined it for some reason
 function turn() {
   boardArrayRep = [
     [],
@@ -744,6 +760,7 @@ while ((alive == true)) {
   turn();
 }
 
+//diagonal movement. Basically raytraces (in its own really special way) in each direction it can. It does this for all of the movement function going forward
 function diagMove() {
   numb = moveFromN;
   lette = moveFromL;
@@ -873,6 +890,7 @@ function diagMove() {
   }
 }
 
+//just checks if the space is occupied
 function checkPie(spot) {
   switch (spot) {
     case kingWhite:
@@ -1024,6 +1042,7 @@ function straightMove() {
   }
 }
 
+//the reason it is in two functions is pure lazyness
 function kingMovementOne() {
   numb = moveFromN;
   lette = moveFromL;
@@ -1184,8 +1203,8 @@ function kingMovementTwo() {
     }
   }
 }
-
-/* function knightMovement() {
+//do not know i even did this and was supprised when i realised i had. I havent looked over it in a while.
+function knightMovement() {
   numb = moveFromN;
   lette = moveFromL;
   let equalsquare = false;
@@ -1341,7 +1360,7 @@ function kingMovementTwo() {
       }
     }
   }
-} */
+} 
 
 
 // // king movement prototype
