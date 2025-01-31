@@ -1,7 +1,7 @@
 //BEFOREHAND KNOWLEDGE
-/*This is the main idea for the structure of the code.
+/*here is the main idea for the structure of the code.
 Basically we have two arrays, one is used for representing the board to the computer, it will use this to check if moves are possible. The other is used to display the 
-pieces to the board. The idea is you enter what square youre moving from, to. Then the system will do a couple things, 1st it will check what piece you want to move. Then 
+pieces to the board. The idea is you enter what square youre moving from, too. Then the system will do a couple things, 1st it will check what piece you want to move. Then 
 it will check if the move is therefore possible using one of the movement functions. Then using executeMove() it will try to execute the current move, it will check a few 
 things before doing so that the rest of the code doesnt check for. After this it will execute the move and move on with the game. Things that do not exist -
 en passant - i tried it (you can see it in the pawn movement function). This was roughly the time i gave up on the project so last i remember it did kinda work and kinda not
@@ -10,7 +10,6 @@ castling - I simply forgot and instead of doing this again i would like to test 
 Please be nice i did this ages ago and am noticing millions of ineficiencies. I did NOT plan this out and just kinda winged it so a lot of stuff doesnt mix well but pointers would be nice*/
 
 let ask = require("prompt-sync")();
-
 //checks if the user wants to concede
 function prompt(words) {
   let skibidi = ask(words)
@@ -129,7 +128,6 @@ let movetoN;
 //takes the input
 function input() {
   moveFromL = prompt("What was the letter the piece is on:");
-  console.log(moveFromL)
   if (alive == false) {
     return;
   }
@@ -150,6 +148,8 @@ function input() {
     console.log("Incorrect Input")
     input()
   } else {
+  console.log(moveFromL, moveFromN, movetoL, movetoN)
+  console.log(displayBoard[moveFromN][moveFromL][0])
   whatMove(displayBoard[moveFromN][moveFromL][0]);
   }
 }
@@ -223,7 +223,7 @@ function toggleTurn() {
 //what the code uses to check if there are possible moves
 let boardArrayRep = [
   [],
-  [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  [0, 1,  2,  3,  4,  5,  6,  7,  8 ],
   [0, 12, 22, 32, 42, 52, 62, 72, 82],
   [0, 13, 23, 33, 43, 53, 63, 73, 83],
   [0, 14, 24, 34, 44, 54, 64, 74, 84],
@@ -383,8 +383,6 @@ let displayBoard = [
   ],
 ];
 
-console.log(displayBoard[1][1][0])
-
 let Ogsquare;
 let MoveToSquare;
 let cluniesMum;
@@ -420,8 +418,7 @@ function marisaCurls(curls) {
         possibleMove = true;
         return true;
     }
-  }
-  if (whiteTurn == false) {
+  } if (whiteTurn == false) {
     switch (curls) {
       case kingBlack:
         console.log("nuh uh");
@@ -770,7 +767,7 @@ function diagMove() {
   MoveToSquare = boardArrayRep[movetoN][movetoL];
   for (let item = 1; item < boardArrayRep.length; item++) {
     for (let square = 1; square < boardArrayRep[item].length; square++) {
-      if ((boardArrayRep[item][square] = Ogsquare)) {
+      if (boardArrayRep[item][square] == Ogsquare) {
         numb--;
         lette--;
         while (edgeOfBoard == false) {
@@ -936,7 +933,7 @@ function straightMove() {
   MoveToSquare = boardArrayRep[movetoN][movetoL];
   for (let item = 1; item < boardArrayRep.length; item++) {
     for (let square = 1; square < boardArrayRep[item].length; square++) {
-      if ((boardArrayRep[item][square] = Ogsquare)) {
+      if (boardArrayRep[item][square] == Ogsquare) {
         numb--;
         while (edgeOfBoard == false) {
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
@@ -1052,7 +1049,7 @@ function kingMovementOne() {
   MoveToSquare = boardArrayRep[movetoN][movetoL];
   for (let item = 1; item < 2; item++) {
     for (let square = 1; square < 2; square++) {
-      if ((boardArrayRep[item][square] = Ogsquare)) {
+      if (boardArrayRep[item][square] == Ogsquare) {
         if (edgeOfBoard == false) {
           numb--;
           lette--;
@@ -1062,7 +1059,7 @@ function kingMovementOne() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            //console.log("Clunie is jacked");
+            console.log("Clunie is jacked");
             executeMove();
             return;
           }
@@ -1080,7 +1077,7 @@ function kingMovementOne() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-           // console.log("Clunie is handsome");
+            console.log("Clunie is handsome");
             executeMove();
             return;
           }
@@ -1097,7 +1094,7 @@ function kingMovementOne() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-           // console.log("Clunie is buetiful");
+            console.log("Clunie is buetiful");
             executeMove();
             return;
           }
@@ -1114,7 +1111,7 @@ function kingMovementOne() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            //console.log("Clunie is amazing");
+            console.log("Clunie is amazing");
             executeMove();
             return;
           }
@@ -1134,7 +1131,7 @@ function kingMovementTwo() {
   MoveToSquare = boardArrayRep[movetoN][movetoL];
   for (let item = 1; item < 2; item++) {
     for (let square = 1; square < 2; square++) {
-      if ((boardArrayRep[item][square] = Ogsquare)) {
+      if (boardArrayRep[item][square] == Ogsquare) {
         if (edgeOfBoard == false) {
           lette--;
           if (numb == 9 || numb == 0 || lette == 0 || lette == 9) {
@@ -1143,7 +1140,7 @@ function kingMovementTwo() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            //console.log("Clunie is great");
+            console.log("Clunie is great");
             executeMove();
             return;
           }
@@ -1160,7 +1157,7 @@ function kingMovementTwo() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            //console.log("Clunie is sexy");
+            console.log("Clunie is sexy");
             executeMove();
             return;
           }
@@ -1176,7 +1173,7 @@ function kingMovementTwo() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            //console.log("Clunie is hot");
+            console.log("Clunie is hot");
             executeMove();
             return;
           }
@@ -1192,7 +1189,7 @@ function kingMovementTwo() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            //console.log("Clunie is smart");
+            console.log("Clunie is smart");
             executeMove();
             return;
           }
@@ -1213,7 +1210,7 @@ function knightMovement() {
   MoveToSquare = boardArrayRep[movetoN][movetoL];
   for (let item = 1; item < 2; item++) {
     for (let square = 1; square < 2; square++) {
-      if ((boardArrayRep[item][square] = Ogsquare)) {
+      if (boardArrayRep[item][square] == Ogsquare) {
         if (edgeOfBoard == false) {
           numb--;
           numb--;
@@ -1224,7 +1221,7 @@ function knightMovement() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is jacked");
+            console.log("Clunie is 1");
             executeMove();
             return;
           }
@@ -1243,7 +1240,7 @@ function knightMovement() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is handsome");
+            console.log("Clunie is 2");
             executeMove();
             return;
           }
@@ -1261,7 +1258,7 @@ function knightMovement() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is buetiful");
+            console.log("Clunie is 3");
             executeMove();
             return;
           }
@@ -1279,7 +1276,7 @@ function knightMovement() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is amazing");
+            console.log("Clunie is 4");
             executeMove();
             return;
           }
@@ -1297,7 +1294,7 @@ function knightMovement() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is jacked");
+            console.log("Clunie is 5");
             executeMove();
             return;
           }
@@ -1316,7 +1313,7 @@ function knightMovement() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is handsome");
+            console.log("Clunie is 6");
             executeMove();
             return;
           }
@@ -1334,7 +1331,7 @@ function knightMovement() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is buetiful");
+            console.log("Clunie is 7");
             executeMove();
             return;
           }
@@ -1352,7 +1349,7 @@ function knightMovement() {
             //fix needed
             equalsquare = true;
             edgeOfBoard = true;
-            console.log("Clunie is amazing");
+            console.log("Clunie is 8");
             executeMove();
             return;
           }
